@@ -26,8 +26,18 @@ The response shall indicate, whether or not the id, pin combination is accepted 
 
 \subsection{Start Transaction}
 
+When a StationSlot unlocked a Pedelec and the Slot notifies the removal of the Pedelec by a user, the Station needs to inform the Central System about this.
+
+The Central Station acknowledges.
+
 \subsection{Stop Transaction}
 
+After the Station recognizes the return of a Pedelec at a specific Slot, it needs to inform the Central Station about this.
+
 \subsection{Heartbeat}
+
+To let the Central Station know that a Station is still connected, a Station sends a heartbeat after a configurable time interval.
+
+The Central Stations sends a response with the current time of the Central System, which could be used to synchronize the time of the Station with the time of the Central System.
 
 \subsection{Charge State}
