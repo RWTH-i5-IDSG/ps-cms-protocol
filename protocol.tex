@@ -1,0 +1,37 @@
+% %
+% LAYOUT_E.TEX - Short description of REFMAN.CLS
+%                                       99-03-20
+% http://www.ctan.org/pkg/refman
+%
+% Updated for REFMAN.CLS (LaTeX2e)
+%
+\documentclass[oneside,a4paper]{refart}
+\usepackage{makeidx}
+
+\usepackage[pdftex]{graphicx}
+\graphicspath{{./figures/}}
+
+\title{Communication Protocol Between PedelecStation and CentralSystem}
+\author{RWTH - i5\\
+Version: 0.0.1}
+
+\date{\today}
+\emergencystretch1em  %
+
+\pagestyle{myfootings}
+
+\makeindex 
+
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/01.tex}
+\input{sections/02.tex}
+\input{sections/03.tex}
+
+\end{document}
+
+
