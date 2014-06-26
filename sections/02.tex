@@ -1,1 +1,33 @@
 \section{Operations Initiated by PedelecStation}
+
+\subsection{Boot Notification}
+
+After start-up a Pedelec Station, the station sends a notification to the Central System with information about its configuration (e.g., manufacturer id, connected StationSlots and Pedelecs). Central System will accept only registered Stations. 
+
+After each reboot, the Boot Notification is sent. 
+
+The Central Systems responses if the Station is accepted, including current time and heartbeat interval if true.
+
+The Stations repeats the Boot Notification (in an appropriated interval) until the Central System accepts the Station. The Station requests nothing else, until Central System accepts it.
+
+\subsection{Station Status Notification}
+
+A Station sends a notification to the Central System to inform the Central System about its status or error condition within the Station and the connected StationSlots. A Station shall send an StationStatusNotification when it becomes unavailable as a result of an error condition or other external events.
+
+\subsection{Pedelec Status Notification}
+
+A Station sends a notification to the Central System to inform the Central System about the status or error condition of connected Pedelecs. A Station shall send an PedelecStatusNotification when a Pedelec becomes unavailable as a result of an error condition or other external events.
+
+\subsection{Authorize}
+
+Before a user can choose and unlock a Pedelec (e.g, Bluecard), the Station needs to be able to authorize the operation. Only after authorization the Station will unlock the Pedelec. For this purpose the Station needs the Card-ID and PIN from the user for authorization.
+
+The response shall indicate, whether or not the id, pin combination is accepted by the Central System.
+
+\subsection{Start Transaction}
+
+\subsection{Stop Transaction}
+
+\subsection{Heartbeat}
+
+\subsection{Charge State}
