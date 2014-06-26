@@ -16,7 +16,7 @@ A PedelecStation sends a notification to the CentralSystem to inform the Central
 
 \subsection{Pedelec Status Notification}
 
-A PedelecStation sends a notification to the CentralSystem to inform the it about the status or error condition of connected Pedelecs. A Station shall send an PedelecStatusNotification when a Pedelec becomes unavailable as a result of an error condition or other external events.
+A PedelecStation sends a notification to the CentralSystem to inform the CentralSystem about the status or error condition of connected Pedelecs. A PedelecStation shall send an PedelecStatusNotification when a Pedelec becomes unavailable as a result of an error condition or other external events.
 
 \subsection{Authorize}
 
@@ -26,13 +26,13 @@ The response shall indicate, whether or not the Card-ID, PIN combination is acce
 
 \subsection{Start Transaction}
 
-When a PedelecStation unlocks a Pedelec and the PedelecStation notifies the removal of the Pedelec, the Station needs to inform the CentralSystem about this.
+When the rental is authenticated, the StationSlot is unlocked and the user took the Pedelec out of the Slot, the PedelecStation needs to inform the CentralSystem about this.
 
 As response the CentralStation sends an acknowledgment.
 
 \subsection{Stop Transaction}
 
-After the Station recognizes the return of a Pedelec at a specific Slot, it needs to inform the Central Station about this.
+After the Station recognizes the return of a Pedelec at a StationSlot, it needs to inform the Central Station about this.
 
 As response the CentralStation sends an acknowledgment.
 
