@@ -18,60 +18,235 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 
 \marginlabel{Request:} 
 JSON object with following elements as parameters:\\
-\begin{tabularx}{\linewidth}{ l X }
+\begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  b 		& asdffb \\
-  c 		& asdfb \\
+  stationManufacturerId 		& This value identifies the PS by its hardware serial\\
+  slots/slotManufacturerId 	& This value identifies the Slot by its hardware serial \\
+  slots/slotPosition			& The sequence position of the connected slot \\
+  slots/pedelecManufacturerId & This value identifies the locked Pedelec by its hardware serial related to the slot \\
+  timestamp & \\
+    \hline
 \end{tabularx}
 
 \marginlabel{Response:}
 JSON object with following elements as return values:\\
-\begin{tabularx}{\linewidth}{ l X }
+\begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  b 		& asdffb \\
-  c 		& asdfb \\
+  acceptStatus 		& Defines if the CMS registration is completed and accepted \\
+    \hline
 \end{tabularx}
 
 \marginlabel{Errors:}
 
 \subsection{Station Status Notification}
 
+\marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about its status or error condition within the \acs{PS} including the connected station slots. A \acs{PS} shall send a Station Status Notification when it becomes unavailable as a result of an error condition or other external events.
+
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  stationManufacturerId 		& This value identifies the PS by its hardware serial\\
+  stationErrorCode & \\
+  stationInfo & \\
+  stationStatus & \\
+  slots/slotManufacturerId 	& This value identifies the Slot by its hardware serial \\
+  slots/slotErrorCode & \\
+  slots/slotInfo & \\
+  slots/slotStatus & \\
+  timestamp & \\
+  
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+\textbf{200 OK}\\
+
+\marginlabel{Errors:}
 
 \subsection{Pedelec Status Notification}
 
+\marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about the status or error condition of connected pedelecs. A \acs{PS} shall send an Pedelec Status Notification when a pedelec becomes unavailable as a result of an error condition or other external events.
+
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  pedelecManufacturerId 		& This value identifies the Pedelec by its hardware serial\\
+  pedelecErrorCode & \\
+  pedelecInfo & \\
+  pedelecStatus & \\
+  timestamp & \\
+  
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+\textbf{200 OK}\\
+
+\marginlabel{Errors:}
 
 \subsection{Authorize}
 
+\marginlabel{Description:}
 Before a user can choose and unlock a pedelec with his CustomerCard (e.g., Bluecard), the \acs{PS} needs to be able to authorize the operation. Only after authorization the \acs{PS} will be able to unlock the pedelec. For this purpose the \acs{PS} needs user's Card-ID and PIN for authorization.
 
 The response shall indicate, whether or not the Card-ID and PIN combination is accepted by the \acs{CMS}.
 
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	cardID 		& Card specific number\\
+  	pin			& User's secret PIN \\
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+JSON object with following elements as return values:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  authorizationStatus 		& Status if credentials are accepted \\
+  userId						& User related to CardId \\
+    \hline
+\end{tabularx}
+
+\marginlabel{Errors:}
+
 \subsection{Start Transaction}
 
+\marginlabel{Description:}
 When the rental is authenticated, the station slot is unlocked and the user took the pedelec out of the slot, the \acs{PS} needs to inform the \acs{CMS} about this.
 
 As response the \acs{CMS} sends an acknowledgment.
 
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	userId 		& \\
+  	pedelecManufacturerId			& \\
+  	stationManufacturerId			& \\
+  	slotManufacturerId			& \\
+  	timestamp					& \\
+  	
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+\textbf{200 OK}\\
+
+\marginlabel{Errors:}
+
 \subsection{Stop Transaction}
 
+\marginlabel{Description:}
 After the \acs{PS} recognizes the return of a pedelec at a station slot, it needs to inform the \acs{CMS} about this.
 
 As response the \acs{CMS} sends an acknowledgment.
 
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	pedelecManufacturerId			& \\
+  	stationManufacturerId			& \\
+  	slotManufacturerId			& \\
+  	timestamp					& \\
+  	
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+\textbf{200 OK}\\
+
 \subsection{Heartbeat}
 
+\marginlabel{Description:}
 To let the \acs{CMS} know that a station is still connected, a \acs{PS} sends heartbeats regularly in configurable time intervals.
 
 The \acs{CMS} sends a response with the current time of the \acs{CMS}, which could be used to synchronize the time of the \acs{PS} with the time of the \acs{CMS}.
 
+\marginlabel{URL:}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:} 
+-
+
+\marginlabel{Response:}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	timestamp					& \\
+  	
+    \hline
+\end{tabularx}
+
 \subsection{Charge State}
 
+\marginlabel{Description:}
 The \acs{PS} informs the \acs{CMS} at regular intervals about the charge state (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
 
 The message contains the current timestamp, the meter values (Wh), the charge state (e.g., charging, completed), the PedelecID and StationSlotID.
+
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	pedelecManufacturerId			& \\
+  	slotManufacturerId					& \\
+  	meterValues			& \\
+  	chargeStatus			& \\
+ 	timestamp			& \\
+  	
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:}
+\textbf{200 OK}\\
