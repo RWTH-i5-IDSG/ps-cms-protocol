@@ -2,26 +2,112 @@
 
 \subsection{Change Station Operation State}
 
-\acs{CMS} can request to change the operation state of a \acs{PS} or its slots. The \acs{PS} must respond with "Accepted" or "Rejected". When rejected, the \acs{PS} must include a reason.
+\marginlabel{Description:}
+\acs{CMS} can request to change the operation state of a \acs{PS} or its slots. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\seealso{Section \ref{types:OperationState}} See Section \ref{types:OperationState} for allowed operation states.
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  slotId (optional) 		& When present, the state of the slot with the given ID will be changed. When absent, the state of whole \acs{PS} will be changed. \\
+  state 					& See Section \ref{types:OperationState} \\
+    \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
+JSON object with following elements:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  code 			& See Section \ref{types:errors} \\
+  reason 		& Reasoning why the request was rejected. \\
+    \hline
+\end{tabularx}
 
 \subsection{Change Pedelec Operation State}
 
-\acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} must respond with "Accepted" or "Rejected". When rejected, the \acs{PS} must include a reason.
+\marginlabel{Description:}
+\acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\seealso{Section \ref{types:OperationState}} See Section \ref{types:OperationState} for allowed operation states.
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  slotId			& The ID of the slot where the pedelec is located. \\
+  pedelecId		& The ID of the pedelec. \\
+  state 			& See Section \ref{types:OperationState} \\
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
+JSON object with following elements:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  code 			& See Section \ref{types:errors} \\
+  reason 		& Reasoning why the request was rejected. \\
+  \hline
+\end{tabularx}
 
 \subsection{Change Configuration}
 
-\acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting. The \acs{PS} must respond with one of the following:
-\begin{itemize}
-	\item "Accepted" if all the parameter changes are accepted and done.
-	\item "Rejected" with a list of keys that are rejected (in this case other parameters are set)
-	\item "Not Found" with a list of keys that are not found as configuration parameters (in this case other parameters are set)
-\end{itemize}
+\marginlabel{Description:}
+\acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\seealso{Section \ref{types:ConfigurationKeyValue}} See Section \ref{types:ConfigurationKeyValue} for allowed configuration parameters.
+\marginlabel{URL:}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+JSON object with following elements as parameters:\\
+\begin{tabularx}{\linewidth}{ | l | l | X | }
+  \hline
+  \textit{Field} & \textit{Value} &\textit{Description} \\
+  \hline \hline
+  CentralSystemURL 			& string 		& New value for the URL \\
+  HeartBeatInterval 			& integer 		& In seconds \\
+  OpenSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
+  ConnectionTimeOut 			& integer 		& In seconds \\
+  RebootRetries 				& integer 		& How many times should \acs{PS} try to reboot before giving up.\\
+  ChargeStateInformInterval 	& integer 		& In seconds \\
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} 
+\textbf{200 OK}\\ If all the parameter changes are accepted and done.
+
+\marginlabel{Errors:}
+JSON object with following elements:\\
+\begin{tabularx}{\linewidth}{ | l | l | X | }
+  \hline
+  \textit{Field} & \textit{Value} & \textit{Description} \\
+  \hline \hline
+  failed			& JSON array & List of parameters that \acs{PS} failed to set a new value for.\\
+  reason 		& Not Acceptable, Not Found & Reasoning why the request was rejected.\\
+  \hline
+\end{tabularx}
+
+\textit{Not Acceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
+
+\textit{Not Found:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
 
 \subsection{Get Configuration}
 
