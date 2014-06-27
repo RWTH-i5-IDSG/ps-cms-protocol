@@ -10,14 +10,23 @@
 \usepackage{tabularx}
 \usepackage{acronym}
 
+% New page after each section
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
 \usepackage[pdftex]{graphicx}
 \graphicspath{{./figures/}}
 
 \title{Communication Protocol Between Pedelec Station and Central Management System}
-\author{RWTH - i5\\
-Version: 0.0.1}
+\author{
+Authors:\\
+RWTH - i5\\ \vspace{5mm}
+Version:\\
+0.0.1\\ \vspace{5mm}
+Date:\\
+\today}
 
-\date{\today}
+\date{}
 \emergencystretch1em  %
 
 \pagestyle{myfootings}
@@ -29,17 +38,15 @@ Version: 0.0.1}
 
 \begin{document}
 \maketitle
+
+\input{sections/version-history.tex}
+
 \tableofcontents
 
-\newpage
 \input{sections/acronyms.tex}
-\newpage
 \input{sections/01.tex}
-\newpage
 \input{sections/02.tex}
-\newpage
 \input{sections/03.tex}
-\newpage
 \input{sections/04.tex}
 
 \end{document}
