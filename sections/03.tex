@@ -5,9 +5,9 @@
 \marginlabel{Description:}
 \acs{CMS} can request to change the operation state of a \acs{PS} or its slots. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_PS_URI]/operation-state/station}
 
-\marginlabel{Method:} POST
+\marginlabel{Method:} PUT
 
 \marginlabel{Request:} 
 JSON object with following elements as parameters:\\
@@ -15,7 +15,7 @@ JSON object with following elements as parameters:\\
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  slotId (optional) 		& When present, the state of the slot with the given ID will be changed. When absent, the state of whole \acs{PS} will be changed. \\
+  slotPosition (optional) 		& When present, the state of the slot with the given position will be changed. When absent, the state of whole \acs{PS} will be changed. \\
   state 					& See Section \ref{types:OperationState} \\
     \hline
 \end{tabularx}
@@ -23,24 +23,15 @@ JSON object with following elements as parameters:\\
 \marginlabel{Response:} \textbf{200 OK}
 
 \marginlabel{Errors:}
-JSON object with following elements:\\
-\begin{tabularx}{\linewidth}{ | l | X | }
-  \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
-  code 			& See Section \ref{types:errors} \\
-  reason 		& Reasoning why the request was rejected. \\
-    \hline
-\end{tabularx}
 
 \subsection{Change Pedelec Operation State}
 
 \marginlabel{Description:}
 \acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_PS_URI]/operation-state/pedelec}
 
-\marginlabel{Method:} POST
+\marginlabel{Method:} PUT
 
 \marginlabel{Request:} 
 JSON object with following elements as parameters:\\
@@ -48,7 +39,7 @@ JSON object with following elements as parameters:\\
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  slotId			& The ID of the slot where the pedelec is located. \\
+  slotPosition	& The position of the slot where the pedelec is located. \\
   pedelecId		& The ID of the pedelec. \\
   state 			& See Section \ref{types:OperationState} \\
   \hline
@@ -57,24 +48,16 @@ JSON object with following elements as parameters:\\
 \marginlabel{Response:} \textbf{200 OK}
 
 \marginlabel{Errors:}
-JSON object with following elements:\\
-\begin{tabularx}{\linewidth}{ | l | X | }
-  \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
-  code 			& See Section \ref{types:errors} \\
-  reason 		& Reasoning why the request was rejected. \\
-  \hline
-\end{tabularx}
 
 \subsection{Change Configuration}
+\label{cms:change-conf}
 
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_PS_URI]/config}
 
-\marginlabel{Method:} POST
+\marginlabel{Method:} PUT
 
 \marginlabel{Request:} 
 JSON object with following elements as parameters:\\
@@ -82,12 +65,12 @@ JSON object with following elements as parameters:\\
   \hline
   \textit{Field} & \textit{Value} &\textit{Description} \\
   \hline \hline
-  CentralSystemURL 			& string 		& New value for the URL \\
-  HeartBeatInterval 			& integer 		& In seconds \\
-  OpenSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
-  ConnectionTimeOut 			& integer 		& In seconds \\
-  RebootRetries 				& integer 		& How many times should \acs{PS} try to reboot before giving up.\\
-  ChargeStateInformInterval 	& integer 		& In seconds \\
+  centralSystemURL 			& string 		& New value for the URL \\
+  heartBeatInterval 			& integer 		& In seconds \\
+  openSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
+  connectionTimeOut 			& integer 		& In seconds \\
+  rebootRetries 				& integer 		& How many times should \acs{PS} try to reboot before giving up.\\
+  chargeStateInformInterval 	& integer 		& In seconds \\
   \hline
 \end{tabularx}
 
@@ -111,28 +94,103 @@ JSON object with following elements:\\
 
 \subsection{Get Configuration}
 
+\marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\seealso{Section \ref{types:ConfigurationKeyValue}} See Section \ref{types:ConfigurationKeyValue} for returned configuration parameters.
+\marginlabel{URL:} \url{[BASE_PS_URI]/config}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:}
+
+\marginlabel{Response:} JSON object with return values for elements defined in Section \ref{cms:change-conf}/Request
+
+\marginlabel{Errors:}
 
 \subsection{Remote Authorize}
 
+\marginlabel{Description:}
 When using the mobile app for renting a pedelec the user does not require a card to authenticate against the \acs{PS}, but uses the app to authenticate directly against the \acs{CMS}. In this case, \acs{CMS} sends a Remote Authorize message to the \acs{PS} to unlock the slot(s) for the user to take the pedelec. 
 
 After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s) and sends a Start Transaction message to \acs{CMS}, namely the rental process proceeds usual.
 
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/authorize/remote}
+
+\marginlabel{Method:} PUT
+
+\marginlabel{Request:}
+JSON object with following elements:\\
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  slotPosition (optional) 		&  \\
+  userId		&  \\
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
+
 \subsection{Cancel Authorize}
 
+\marginlabel{Description:}
 When using the mobile app for renting a pedelec the user can wish to cancel the rental process after Remote Authorize is initiated. In this case, \acs{CMS} sends a Cancel Authorize message to the \acs{PS} lock the slot(s) again.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/authorize/cancel/<slotPosition>}
+
+\marginlabel{Method:} PUT
+
+\marginlabel{Request:}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
 
 \subsection{Reboot}
 
+\marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to reboot. The \acs{PS} must respond with "Accepted" or "Rejected". When accepted, the \acs{PS} reboots after gracefully terminating running software. When rejected, the \acs{PS} must include a reason.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/reboot}
+
+\marginlabel{Method:} PUT
+
+\marginlabel{Request:}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
 
 \subsection{Unlock Slot}
 
-In cases of maintenance or technical problems \acs{CMS} can request a \acs{PS} to unlock a slot in order to access a pedelec.
+\marginlabel{Description:}
+In cases of maintenance or technical problems \acs{CMS} can request a \acs{PS} to unlock a slot or all slots in order to access a pedelec. 
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/unlock/<slotPosition>} \\
+slotPosition is optional. When absent, the \acs{PS} unlocks all slots.
+
+\marginlabel{Method:} PUT
+
+\marginlabel{Request:}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:}
 
 \subsection{Get Charge State}
 
+\marginlabel{Description:}
 Even though a \acs{PS} informs the \acs{CMS} about the charging state of pedelecs regularly, it is desirable to get the latest information in various cases.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/charge-state}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:}
+
+\marginlabel{Response:} JSON object with return values for elements defined in Section \ref{ps:charge-state}/Request
+
+\marginlabel{Errors:}

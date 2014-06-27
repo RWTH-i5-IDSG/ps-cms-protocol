@@ -12,7 +12,7 @@ The \acs{CMS} sends a response with the acceptable status, including current tim
 The \acs{PS} repeats the Boot Notification (in an appropriated interval) until the \acs{CMS} accepts the \acs{PS}. The \acs{PS} requests nothing else, until \acs{CMS} accepts it.
 
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/boot}
 
 \marginlabel{Method:} POST
 
@@ -47,7 +47,7 @@ JSON object with following elements as return values:\\
 \marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about its status or error condition within the \acs{PS} including the connected station slots. A \acs{PS} shall send a Station Status Notification when it becomes unavailable as a result of an error condition or other external events.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/station}
 
 \marginlabel{Method:} POST
 
@@ -80,7 +80,7 @@ JSON object with following elements as parameters:\\
 \marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about the status or error condition of connected pedelecs. A \acs{PS} shall send an Pedelec Status Notification when a pedelec becomes unavailable as a result of an error condition or other external events.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/pedelec}
 
 \marginlabel{Method:} POST
 
@@ -111,7 +111,7 @@ Before a user can choose and unlock a pedelec with his CustomerCard (e.g., Bluec
 
 The response shall indicate, whether or not the Card-ID and PIN combination is accepted by the \acs{CMS}.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/authorize}
 
 \marginlabel{Method:} POST
 
@@ -146,7 +146,7 @@ When the rental is authenticated, the station slot is unlocked and the user took
 
 As response the \acs{CMS} sends an acknowledgment.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/transaction/start}
 
 \marginlabel{Method:} POST
 
@@ -177,7 +177,7 @@ After the \acs{PS} recognizes the return of a pedelec at a station slot, it need
 
 As response the \acs{CMS} sends an acknowledgment.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/transaction/stop}
 
 \marginlabel{Method:} POST
 
@@ -205,7 +205,7 @@ To let the \acs{CMS} know that a station is still connected, a \acs{PS} sends he
 
 The \acs{CMS} sends a response with the current time of the \acs{CMS}, which could be used to synchronize the time of the \acs{PS} with the time of the \acs{CMS}.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/heartbeat}
 
 \marginlabel{Method:} GET
 
@@ -223,13 +223,14 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
 \end{tabularx}
 
 \subsection{Charge State}
+\label{ps:charge-state}
 
 \marginlabel{Description:}
 The \acs{PS} informs the \acs{CMS} at regular intervals about the charge state (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
 
 The message contains the current timestamp, the meter values (Wh), the charge state (e.g., charging, completed), the PedelecID and StationSlotID.
 
-\marginlabel{URL:}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/charge-state}
 
 \marginlabel{Method:} POST
 
