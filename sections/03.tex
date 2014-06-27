@@ -1,20 +1,20 @@
-\section{Operations Initiated by CentralSystem}
+\section{Operations Initiated by Central Management System}
 
 \subsection{Change Station Operation State}
 
-CentralSystem can request to change the operation state of a PedelecStation or its slots. The PedelecStation must respond with "Accepted" or "Rejected". When rejected, the PedelecStation must include a reason.
+\acs{CMS} can request to change the operation state of a \acs{PS} or its slots. The \acs{PS} must respond with "Accepted" or "Rejected". When rejected, the \acs{PS} must include a reason.
 
 \seealso{Section \ref{types:OperationState}} See Section \ref{types:OperationState} for allowed operation states.
 
 \subsection{Change Pedelec Operation State}
 
-CentralSystem can request to change the operation state of a pedelec located at a slot of a PedelecStation. The PedelecStation must respond with "Accepted" or "Rejected". When rejected, the PedelecStation must include a reason.
+\acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} must respond with "Accepted" or "Rejected". When rejected, the \acs{PS} must include a reason.
 
 \seealso{Section \ref{types:OperationState}} See Section \ref{types:OperationState} for allowed operation states.
 
 \subsection{Change Configuration}
 
-CentralSystem can request a PedelecStation to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting. The PedelecStation must respond with one of the following:
+\acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting. The \acs{PS} must respond with one of the following:
 \begin{itemize}
 	\item "Accepted" if all the parameter changes are accepted and done.
 	\item "Rejected" with a list of keys that are rejected (in this case other parameters are set)
@@ -25,20 +25,28 @@ CentralSystem can request a PedelecStation to change configuration parameters. T
 
 \subsection{Get Configuration}
 
-CentralSystem can retrieve the values of configuration settings. This operation requires no parameters, and PedelecStation returns all values.
+\acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
 \seealso{Section \ref{types:ConfigurationKeyValue}} See Section \ref{types:ConfigurationKeyValue} for returned configuration parameters.
 
 \subsection{Remote Authorize}
 
-When using the mobile app for renting a pedelec the user does not require a card to authenticate against the PedelecStation, but uses the app to authenticate directly against the CentralSystem. In this case, CentralSystem sends a Remote Authorize message to the PedelecStation to unlock the slot(s) for the user to take the pedelec. 
+When using the mobile app for renting a pedelec the user does not require a card to authenticate against the \acs{PS}, but uses the app to authenticate directly against the \acs{CMS}. In this case, \acs{CMS} sends a Remote Authorize message to the \acs{PS} to unlock the slot(s) for the user to take the pedelec. 
 
-After a timeout period PedelecStation checks the existence of a pedelec at the slot(s) and sends a Start Transaction message to CentralSystem, namely the rental process proceeds usual.
+After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s) and sends a Start Transaction message to \acs{CMS}, namely the rental process proceeds usual.
 
 \subsection{Cancel Authorize}
 
-When using the mobile app for renting a pedelec the user can wish to cancel the rental process after Remote Authorize is initiated. In this case, CentralSystem sends a Cancel Authorize message to the PedelecStation lock the slot(s) again.
+When using the mobile app for renting a pedelec the user can wish to cancel the rental process after Remote Authorize is initiated. In this case, \acs{CMS} sends a Cancel Authorize message to the \acs{PS} lock the slot(s) again.
 
 \subsection{Reboot}
+
+\acs{CMS} can request a \acs{PS} to reboot. The \acs{PS} must respond with "Accepted" or "Rejected". When accepted, the \acs{PS} reboots after gracefully terminating running software. When rejected, the \acs{PS} must include a reason.
+
 \subsection{Unlock Slot}
+
+In cases of maintenance or technical problems \acs{CMS} can request a \acs{PS} to unlock a slot in order to access a pedelec.
+
 \subsection{Get Charge State}
+
+Even though a \acs{PS} informs the \acs{CMS} about the charging state of pedelecs regularly, it is desirable to get the latest information in various cases.

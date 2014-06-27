@@ -1,49 +1,49 @@
-\section{Operations Initiated by PedelecStation}
+\section{Operations Initiated by Pedelec Station}
 
 \subsection{Boot Notification}
 
-After start-up a PedelecStation, the PedelecStation sends a notification to the Central System with information about its configuration (e.g., manufacturer id, connected StationSlots and Pedelecs). CentralSystem will accept only registered Stations. 
+After start-up of a \acs{PS}, the \acs{PS} sends a notification to the \acs{CMS} with information about its configuration (e.g., manufacturer id, connected station slots and pedelecs). \acs{CMS} will accept only registered stations. 
 
 After each reboot, the Boot Notification is sent.
 
-The CentralSystems sends a response with the acceptable status, including current time and heartbeat interval if accepted.
+The \acs{CMS} sends a response with the acceptable status, including current time and heartbeat interval if accepted.
 
-The PedelecStation repeats the Boot Notification (in an appropriated interval) until the CentralSystem accepts the PedelecStation. The PedelecStation requests nothing else, until CentralSystem accepts it.
+The \acs{PS} repeats the Boot Notification (in an appropriated interval) until the \acs{CMS} accepts the \acs{PS}. The \acs{PS} requests nothing else, until \acs{CMS} accepts it.
 
-\subsection{PedelecStation Status Notification}
+\subsection{Station Status Notification}
 
-A PedelecStation sends a notification to the CentralSystem to inform the CentralSystem about its status or error condition within the PedelecStation including the connected StationSlots. A PedelecStation shall send a PedelecStationStatusNotification when it becomes unavailable as a result of an error condition or other external events.
+A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about its status or error condition within the \acs{PS} including the connected station slots. A \acs{PS} shall send a Station Status Notification when it becomes unavailable as a result of an error condition or other external events.
 
 \subsection{Pedelec Status Notification}
 
-A PedelecStation sends a notification to the CentralSystem to inform the CentralSystem about the status or error condition of connected Pedelecs. A PedelecStation shall send an PedelecStatusNotification when a Pedelec becomes unavailable as a result of an error condition or other external events.
+A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about the status or error condition of connected pedelecs. A \acs{PS} shall send an Pedelec Status Notification when a pedelec becomes unavailable as a result of an error condition or other external events.
 
 \subsection{Authorize}
 
-Before a user can choose and unlock a Pedelec with his CustomerCard (e.g., Bluecard), the PedelecStation needs to be able to authorize the operation. Only after authorization the Station will be able to unlock the Pedelec. For this purpose the PedelecStation needs user's Card-ID and PIN for authorization.
+Before a user can choose and unlock a pedelec with his CustomerCard (e.g., Bluecard), the \acs{PS} needs to be able to authorize the operation. Only after authorization the \acs{PS} will be able to unlock the pedelec. For this purpose the \acs{PS} needs user's Card-ID and PIN for authorization.
 
-The response shall indicate, whether or not the Card-ID, PIN combination is accepted by the CentralSystem.
+The response shall indicate, whether or not the Card-ID and PIN combination is accepted by the \acs{CMS}.
 
 \subsection{Start Transaction}
 
-When the rental is authenticated, the StationSlot is unlocked and the user took the Pedelec out of the Slot, the PedelecStation needs to inform the CentralSystem about this.
+When the rental is authenticated, the station slot is unlocked and the user took the pedelec out of the slot, the \acs{PS} needs to inform the \acs{CMS} about this.
 
-As response the CentralStation sends an acknowledgment.
+As response the \acs{CMS} sends an acknowledgment.
 
 \subsection{Stop Transaction}
 
-After the Station recognizes the return of a Pedelec at a StationSlot, it needs to inform the Central Station about this.
+After the \acs{PS} recognizes the return of a pedelec at a station slot, it needs to inform the \acs{CMS} about this.
 
-As response the CentralStation sends an acknowledgment.
+As response the \acs{CMS} sends an acknowledgment.
 
 \subsection{Heartbeat}
 
-To let the Central Station know that a Station is still connected, a Station sends a heartbeat after a configurable time interval.
+To let the \acs{CMS} know that a station is still connected, a \acs{PS} sends heartbeats regularly in configurable time intervals.
 
-The CentralStations sends a response with the current time of the Central System, which could be used to synchronize the time of the Station with the time of the CentralSystem.
+The \acs{CMS} sends a response with the current time of the \acs{CMS}, which could be used to synchronize the time of the \acs{PS} with the time of the \acs{CMS}.
 
 \subsection{Charge State}
 
-The PedelecStation informs the CentralStation at regular intervals about the charge state (in interval or if fully charged) of all connected Pedelecs of the PedelecStation.
+The \acs{PS} informs the \acs{CMS} at regular intervals about the charge state (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
 
 The message contains the current timestamp, the meter values (Wh), the charge state (e.g., charging, completed), the PedelecID and StationSlotID.
