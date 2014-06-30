@@ -10,7 +10,8 @@
 \marginlabel{Method:} PUT
 
 \marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -19,10 +20,13 @@ JSON object with following elements as parameters:\\
   state 					& See Section \ref{types:OperationState} \\
     \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Change Pedelec Operation State}
 
@@ -34,20 +38,24 @@ JSON object with following elements as parameters:\\
 \marginlabel{Method:} PUT
 
 \marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
   slotPosition	& The position of the slot where the pedelec is located. \\
-  pedelecId		& The ID of the pedelec. \\
+  pedelecManufacturerId		&  \\
   state 			& See Section \ref{types:OperationState} \\
   \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Change Configuration}
 \label{cms:change-conf}
@@ -59,38 +67,43 @@ JSON object with following elements as parameters:\\
 
 \marginlabel{Method:} PUT
 
+\newpage
 \marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \textit{Field} & \textit{Value} &\textit{Description} \\
   \hline \hline
-  centralSystemURL 			& string 		& New value for the URL \\
+  cmsURI 			& string 		& New value for the CMS Webservice URI \\
   heartBeatInterval 			& integer 		& In seconds \\
   openSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
-  connectionTimeOut 			& integer 		& In seconds \\
   rebootRetries 				& integer 		& How many times should \acs{PS} try to reboot before giving up.\\
-  chargeStateInformInterval 	& integer 		& In seconds \\
+  chargingStatusInformInterval 	& integer 		& In seconds \\
   \hline
 \end{tabularx}
+\end{table}
 
 \marginlabel{Response:} 
-\textbf{200 OK}\\ If all the parameter changes are accepted and done.
+\textbf{200 OK} (If all the parameter changes are accepted and done)
 
-\marginlabel{Errors:}
-JSON object with following elements:\\
-\begin{tabularx}{\linewidth}{ | l | l | X | }
+\marginlabel{Errors:} \textbf{400 Bad Request}
+
+\begin{tabularx}{\linewidth}{ | l | X | X | }
   \hline
   \textit{Field} & \textit{Value} & \textit{Description} \\
   \hline \hline
   failed			& JSON array & List of parameters that \acs{PS} failed to set a new value for.\\
-  reason 		& Not Acceptable, Not Found & Reasoning why the request was rejected.\\
+  reason 		& NotAcceptable or NotFound & \\
   \hline
 \end{tabularx}
 
-\textit{Not Acceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
+\textit{NotAcceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
 
-\textit{Not Found:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
+\textit{NotFound:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
+
+
+\textbf{5xx Server Error}
 
 \subsection{Get Configuration}
 
@@ -101,11 +114,30 @@ JSON object with following elements:\\
 
 \marginlabel{Method:} GET
 
-\marginlabel{Request:}
+\marginlabel{Request:} -
 
-\marginlabel{Response:} JSON object with return values for elements defined in Section \ref{cms:change-conf}/Request
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:}
+JSON object with return values for elements defined in Section \ref{cms:change-conf}/Request
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
+\subsection{Get Charging Status}
+
+\marginlabel{Description:}
+Even though a \acs{PS} informs the \acs{CMS} about the charging status of pedelecs regularly, it is desirable to get the latest information in various cases.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/charging-status}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:} -
+
+\marginlabel{Response:} \textbf{200 OK}
+
+JSON object with return values for elements defined in Section \ref{ps:charging-status}/Request
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Remote Authorize}
 
@@ -120,7 +152,8 @@ After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s)
 \marginlabel{Method:} PUT
 
 \marginlabel{Request:}
-JSON object with following elements:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -129,10 +162,13 @@ JSON object with following elements:\\
   userId		&  \\
   \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Cancel Authorize}
 
@@ -143,11 +179,13 @@ When using the mobile app for renting a pedelec the user can wish to cancel the 
 
 \marginlabel{Method:} PUT
 
-\marginlabel{Request:}
+\marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Reboot}
 
@@ -158,11 +196,13 @@ When using the mobile app for renting a pedelec the user can wish to cancel the 
 
 \marginlabel{Method:} PUT
 
-\marginlabel{Request:}
+\marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Unlock Slot}
 
@@ -174,23 +214,10 @@ slotPosition is optional. When absent, the \acs{PS} unlocks all slots.
 
 \marginlabel{Method:} PUT
 
-\marginlabel{Request:}
+\marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{200 OK}
+\marginlabel{Response:} \textbf{202 Accepted}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
 
-\subsection{Get Charge State}
-
-\marginlabel{Description:}
-Even though a \acs{PS} informs the \acs{CMS} about the charging state of pedelecs regularly, it is desirable to get the latest information in various cases.
-
-\marginlabel{URL:} \url{[BASE_PS_URI]/charge-state}
-
-\marginlabel{Method:} GET
-
-\marginlabel{Request:}
-
-\marginlabel{Response:} JSON object with return values for elements defined in Section \ref{ps:charge-state}/Request
-
-\marginlabel{Errors:}
+\textbf{5xx Server Error}

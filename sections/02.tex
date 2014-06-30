@@ -16,31 +16,38 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 
 \marginlabel{Method:} POST
 
-\marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  stationManufacturerId 		& This value identifies the PS by its hardware serial\\
-  slots/slotManufacturerId 	& This value identifies the Slot by its hardware serial \\
+  stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial \\
+  firmwareVersion			& Firmware version of \acs{PS}\\
+  slots/slotManufacturerId 	& This value identifies the slot by its hardware serial \\
   slots/slotPosition			& The sequence position of the connected slot \\
-  slots/pedelecManufacturerId & This value identifies the locked Pedelec by its hardware serial related to the slot \\
-  timestamp & \\
+  slots/pedelecManufacturerId & This value identifies the locked pedelec by its hardware serial related to the slot \\
     \hline
 \end{tabularx}
+\end{table}
 
 \marginlabel{Response:}
-JSON object with following elements as return values:\\
+\textbf{202 Accepted}
+
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  acceptStatus 		& Defines if the CMS registration is completed and accepted \\
+  timestamp & Unix timestamp (seconds since epoch) \\
+  heartbeatInterval & In seconds \\
     \hline
 \end{tabularx}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} 
+\textbf{406 Not Acceptable} (If the station is not registered)
+
+\textbf{5xx Server Error}
 
 \subsection{Station Status Notification}
 
@@ -51,8 +58,10 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
 
 \marginlabel{Method:} POST
 
-\marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\newpage
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -60,20 +69,19 @@ JSON object with following elements as parameters:\\
   stationManufacturerId 		& This value identifies the PS by its hardware serial\\
   stationErrorCode & \\
   stationInfo & \\
-  stationStatus & \\
+  stationState & See Section \ref{types:OperationState} \\
+  timestamp & Unix timestamp (seconds since epoch) \\
   slots/slotManufacturerId 	& This value identifies the Slot by its hardware serial \\
   slots/slotErrorCode & \\
   slots/slotInfo & \\
-  slots/slotStatus & \\
-  timestamp & \\
-  
-    \hline
+  slots/slotState & See Section \ref{types:OperationState} \\
+  \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:}
-\textbf{200 OK}\\
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Pedelec Status Notification}
 
@@ -84,8 +92,9 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
 
 \marginlabel{Method:} POST
 
-\marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -93,16 +102,52 @@ JSON object with following elements as parameters:\\
   pedelecManufacturerId 		& This value identifies the Pedelec by its hardware serial\\
   pedelecErrorCode & \\
   pedelecInfo & \\
-  pedelecStatus & \\
-  timestamp & \\
-  
+  pedelecState & See Section \ref{types:OperationState} \\
+  timestamp & Unix timestamp (seconds since epoch) \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
+
+\subsection{Charging Status Notification}
+\label{ps:charging-status}
+
+\marginlabel{Description:}
+The \acs{PS} informs the \acs{CMS} at regular intervals about the charging status (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
+
+The message contains the current timestamp, the meter value (Wh), the state (e.g., charging, completed), the PedelecID and StationSlotID.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/charging}
+
+\marginlabel{Method:} POST
+
+\newpage
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	pedelecManufacturerId			& \\
+  	slotManufacturerId					& \\
+  	meterValue & \\
+  	batteryLevel & integer charge percentage \\
+  	maxBatteryRange & ideal riding range in meters \\
+  	state			& \\
+ 	timestamp			& Unix timestamp (seconds since epoch) \\
+  	
     \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:}
-\textbf{200 OK}\\
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Authorize}
 
@@ -115,29 +160,33 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 
 \marginlabel{Method:} POST
 
-\marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  	cardID 		& Card specific number\\
+  	cardId 		& Card specific number\\
   	pin			& User's secret PIN \\
     \hline
 \end{tabularx}
+\end{table}
 
 \marginlabel{Response:}
-JSON object with following elements as return values:\\
+\textbf{202 Accepted} (If credentials are accepted)
+
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  authorizationStatus 		& Status if credentials are accepted \\
   userId						& User related to CardId \\
     \hline
 \end{tabularx}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
 
 \subsection{Start Transaction}
 
@@ -150,8 +199,10 @@ As response the \acs{CMS} sends an acknowledgment.
 
 \marginlabel{Method:} POST
 
+\newpage
 \marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -160,15 +211,14 @@ JSON object with following elements as parameters:\\
   	pedelecManufacturerId			& \\
   	stationManufacturerId			& \\
   	slotManufacturerId			& \\
-  	timestamp					& \\
-  	
+  	timestamp					& Unix timestamp (seconds since epoch) \\
     \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:}
-\textbf{200 OK}\\
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:}
+\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Stop Transaction}
 
@@ -182,7 +232,8 @@ As response the \acs{CMS} sends an acknowledgment.
 \marginlabel{Method:} POST
 
 \marginlabel{Request:} 
-JSON object with following elements as parameters:\\
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
@@ -190,13 +241,15 @@ JSON object with following elements as parameters:\\
   	pedelecManufacturerId			& \\
   	stationManufacturerId			& \\
   	slotManufacturerId			& \\
-  	timestamp					& \\
+  	timestamp					& Unix timestamp (seconds since epoch) \\
   	
     \hline
 \end{tabularx}
+\end{table}
 
-\marginlabel{Response:}
-\textbf{200 OK}\\
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Heartbeat}
 
@@ -209,45 +262,17 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
 
 \marginlabel{Method:} GET
 
-\marginlabel{Request:} 
--
+\marginlabel{Request:} -
 
-\marginlabel{Response:}
+\marginlabel{Response:} \textbf{200 OK}
+
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  	timestamp					& \\
-  	
-    \hline
-\end{tabularx}
-
-\subsection{Charge State}
-\label{ps:charge-state}
-
-\marginlabel{Description:}
-The \acs{PS} informs the \acs{CMS} at regular intervals about the charge state (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
-
-The message contains the current timestamp, the meter values (Wh), the charge state (e.g., charging, completed), the PedelecID and StationSlotID.
-
-\marginlabel{URL:} \url{[BASE_CMS_URI]/charge-state}
-
-\marginlabel{Method:} POST
-
-\marginlabel{Request:} 
-JSON object with following elements as parameters:\\
-\begin{tabularx}{\linewidth}{ | l | X | }
+  	timestamp			& Unix timestamp (seconds since epoch) \\	
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
-  	pedelecManufacturerId			& \\
-  	slotManufacturerId					& \\
-  	meterValues			& \\
-  	chargeStatus			& \\
- 	timestamp			& \\
-  	
-    \hline
 \end{tabularx}
 
-\marginlabel{Response:}
-\textbf{200 OK}\\
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
