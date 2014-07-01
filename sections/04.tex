@@ -12,6 +12,20 @@
 %  \hline
 %\end{tabularx}
 
+\subsection{Error Message Template}
+\label{types:error-msg-template}
+
+In case an error occurs, regardless of the HTTP code that is returned the implementation \textit{always} responses with a JSON object containing following fields: 
+
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  code 		& Internal, application-specific error code \\
+  message 	& Additional explanation \\
+  \hline
+\end{tabularx}
+
 
 \subsection{Operation State}
 \label{types:OperationState}
