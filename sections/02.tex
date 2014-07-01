@@ -12,7 +12,7 @@ The \acs{CMS} sends a response with the acceptable status, including current tim
 The \acs{PS} repeats the Boot Notification (in an appropriated interval) until the \acs{CMS} accepts the \acs{PS}. The \acs{PS} requests nothing else, until \acs{CMS} accepts it.
 
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/boot}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/boot}
 
 \marginlabel{Method:} POST
 
@@ -54,7 +54,7 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 \marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about its status or error condition within the \acs{PS} including the connected station slots. A \acs{PS} shall send a Station Status Notification when it becomes unavailable as a result of an error condition or other external events.
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/station}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/status/station}
 
 \marginlabel{Method:} POST
 
@@ -66,12 +66,12 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  stationManufacturerId 		& This value identifies the PS by its hardware serial\\
+  stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial\\
   stationErrorCode & \\
   stationInfo & \\
   stationState & See Section \ref{types:OperationState} \\
   timestamp & Unix timestamp (seconds since epoch) \\
-  slots/slotManufacturerId 	& This value identifies the Slot by its hardware serial \\
+  slots/slotManufacturerId 	& This value identifies the slot by its hardware serial \\
   slots/slotErrorCode & \\
   slots/slotInfo & \\
   slots/slotState & See Section \ref{types:OperationState} \\
@@ -88,7 +88,7 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
 \marginlabel{Description:}
 A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about the status or error condition of connected pedelecs. A \acs{PS} shall send an Pedelec Status Notification when a pedelec becomes unavailable as a result of an error condition or other external events.
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/pedelec}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/status/pedelec}
 
 \marginlabel{Method:} POST
 
@@ -119,9 +119,9 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
 \marginlabel{Description:}
 The \acs{PS} informs the \acs{CMS} at regular intervals about the charging status (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
 
-The message contains the current timestamp, the meter value (Wh), the state (e.g., charging, completed), the PedelecID and StationSlotID.
+The message contains the current timestamp, the meter value (Wh), the charging state (e.g., charging, completed), the PedelecID and StationSlotID.
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/notification/status/charging}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/status/charging}
 
 \marginlabel{Method:} POST
 
@@ -138,7 +138,7 @@ The message contains the current timestamp, the meter value (Wh), the state (e.g
   	meterValue & \\
   	batteryLevel & integer charge percentage \\
   	maxBatteryRange & ideal riding range in meters \\
-  	state			& \\
+  	chargingState			& \\
  	timestamp			& Unix timestamp (seconds since epoch) \\
   	
     \hline
