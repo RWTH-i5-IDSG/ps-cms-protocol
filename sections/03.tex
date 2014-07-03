@@ -57,6 +57,67 @@
 
 \textbf{5xx Server Error}
 
+\subsection{Change Pedelec Configuration}
+\label{cms:change-pedelec-conf}
+
+\marginlabel{Description:}
+\acs{CMS} can request a \acs{PS} to change specific Pedelec configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/\{pedelec\}}
+
+\marginlabel{Method:} POST
+
+\newpage
+\marginlabel{Request:} 
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | l | X | }
+  \hline
+  \textit{Field} & \textit{Value} &\textit{Description} \\
+  \hline \hline
+
+  \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:} 
+\textbf{202 Accepted} (If all the parameter changes are accepted and done)
+
+\marginlabel{Errors:} \textbf{400 Bad Request}
+
+\begin{tabularx}{\linewidth}{ | l | X | X | }
+  \hline
+  \textit{Field} & \textit{Value} & \textit{Description} \\
+  \hline \hline
+  failed			& JSON array & List of parameters that \acs{PS} failed to set a new value for.\\
+  reason 		& NotAcceptable or NotFound & \\
+  \hline
+\end{tabularx}
+
+\textit{NotAcceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
+
+\textit{NotFound:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
+
+
+\textbf{5xx Server Error}
+
+\subsection{Get Pedelec Configuration}
+
+\marginlabel{Description:}
+\acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/\{pedelecId\}}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:} -
+
+\marginlabel{Response:} \textbf{200 OK}
+
+JSON object with return values for Pedelec-Configuration
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
 \subsection{Change Configuration}
 \label{cms:change-conf}
 
