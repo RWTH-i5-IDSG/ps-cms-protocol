@@ -305,7 +305,7 @@ pedelec}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.16866933778607, 462.6506117124278}, {17, 44.578315734863281}}</string>
+			<string>{{417.16866933778607, 469.5662725705821}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -652,7 +652,7 @@ pedelec}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.16867610355774, 238.79457633667354}, {17, 44.578315734863281}}</string>
+			<string>{{417.16867610355774, 245.71023719482787}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -872,7 +872,7 @@ pedelec}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.16869051616675, 61.120484544120409}, {17, 44.578315734863281}}</string>
+			<string>{{417.16869051616675, 68.036145402274713}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -1186,7 +1186,7 @@ pedelec}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-07-02 18:21:35 +0000</string>
+	<string>2014-07-03 08:18:04 +0000</string>
 	<key>Modifier</key>
 	<string>Sevket Gökay</string>
 	<key>NotesVisible</key>
@@ -1267,7 +1267,7 @@ pedelec}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{711, 189}, {1447, 1229}}</string>
+		<string>{{584, 148}, {1447, 1229}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>

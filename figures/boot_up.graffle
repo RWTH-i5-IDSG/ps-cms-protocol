@@ -235,7 +235,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.1686761035578, 147.14427899601458}, {17, 44.578315734863281}}</string>
+			<string>{{417.1686761035578, 154.05993985416887}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -455,7 +455,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.66869136234675, 332.72937197020048}, {17, 44.578315734863281}}</string>
+			<string>{{417.66869136234675, 339.64503282835477}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -675,7 +675,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.16867610355774, 238.79457633667354}, {17, 44.578315734863281}}</string>
+			<string>{{417.16867610355774, 245.71023719482787}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -895,7 +895,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{417.16869051616675, 61.120484544120409}, {17, 44.578315734863281}}</string>
+			<string>{{417.16869051616675, 68.036145402274713}, {17, 32.036148071289062}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>HFlip</key>
@@ -984,7 +984,7 @@
 					<key>Points</key>
 					<array>
 						<string>{425.49397738140112, 30.72289250879539}</string>
-						<string>{425.49397738140112, 405.69880460291188}</string>
+						<string>{425.49397738140112, 405.69880460291199}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1012,7 +1012,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{371.49397738140112, 9.0361459115053506}, {108, 21.686746597290039}}</string>
+					<string>{{371.49397738140112, 9.0361459115053382}, {108, 21.68674659729005}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -1209,7 +1209,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-07-02 18:19:41 +0000</string>
+	<string>2014-07-03 08:17:08 +0000</string>
 	<key>Modifier</key>
 	<string>Sevket Gökay</string>
 	<key>NotesVisible</key>
