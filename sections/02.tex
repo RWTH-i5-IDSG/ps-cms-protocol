@@ -276,3 +276,26 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
 
 
 \marginlabel{Errors:} \textbf{5xx Server Error}
+
+
+\subsection{Firmware Status Notification}
+
+\marginlabel{Description:}
+A PS notifies CMS about the success/failure of the firmware update. 
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/firmware-status}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  	status			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}

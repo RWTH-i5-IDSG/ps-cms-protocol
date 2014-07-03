@@ -63,7 +63,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change specific Pedelec configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/\{pedelec\}}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/<pedelecManufacturerId>}
 
 \marginlabel{Method:} POST
 
@@ -106,7 +106,7 @@
 \marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/\{pedelecId\}}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/<pedelecManufacturerId>}
 
 \marginlabel{Method:} GET
 
@@ -219,7 +219,7 @@ After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s)
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
-  slotPosition (optional) 		&  \\
+  slotPosition 		&  \\
   userId		&  \\
   \hline
 \end{tabularx}
@@ -282,3 +282,30 @@ slotPosition is optional. When absent, the \acs{PS} unlocks all slots.
 \marginlabel{Errors:} \textbf{406 Not Acceptable}
 
 \textbf{5xx Server Error}
+
+\subsection{Firmware Update}
+
+\marginlabel{Description:}
+The CMS can send the PS a firmware update command. With a firmware update request, the CMS informs the PS about a new firmware, including the location of the firmware and the date \& time when the update shall be executed.
+
+The PS should start as soon as possible the firmware after retrieving the retrieve-update.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/update-firmware}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \textit{Field} & \textit{Description} \\
+  \hline \hline
+  firmwareUpdateUrl 		& Location of the firmware update \\
+  executionDateTime	&  Date and time when the PS should execute update \\
+  \hline
+\end{tabularx}
+
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
