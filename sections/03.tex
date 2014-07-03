@@ -63,7 +63,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change specific Pedelec configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/<pedelecManufacturerId>}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
 
 \marginlabel{Method:} POST
 
@@ -106,7 +106,7 @@
 \marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec-config/<pedelecManufacturerId>}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
 
 \marginlabel{Method:} GET
 
@@ -118,13 +118,13 @@ JSON object with return values for Pedelec-Configuration
 
 \marginlabel{Errors:} \textbf{5xx Server Error}
 
-\subsection{Change Configuration}
+\subsection{Change Station Configuration}
 \label{cms:change-conf}
 
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/station/config}
 
 \marginlabel{Method:} POST
 
@@ -166,12 +166,12 @@ JSON object with return values for Pedelec-Configuration
 
 \textbf{5xx Server Error}
 
-\subsection{Get Configuration}
+\subsection{Get Station Configuration}
 
 \marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/station/config}
 
 \marginlabel{Method:} GET
 
@@ -283,28 +283,29 @@ slotPosition is optional. When absent, the \acs{PS} unlocks all slots.
 
 \textbf{5xx Server Error}
 
-\subsection{Firmware Update}
+\subsection{Update Firmware}
 
 \marginlabel{Description:}
-The CMS can send the PS a firmware update command. With a firmware update request, the CMS informs the PS about a new firmware, including the location of the firmware and the date \& time when the update shall be executed.
+The \acs{CMS} can send the \acs{PS} a firmware update command. With a firmware update request, the \acs{CMS} informs the \acs{PS} about a new firmware, including the location of the firmware and the date \& time when the update shall be executed.
 
-The PS should start as soon as possible the firmware after retrieving the retrieve-update.
+The \acs{PS} should start as soon as possible the firmware after retrieving the retrieve-update.
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/update-firmware}
+\marginlabel{URL:} \url{[BASE_PS_URI]/update-firmware}
 
 \marginlabel{Method:} POST
 
 \marginlabel{Request:}
-
+\begin{table}[!h]
+\vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \textit{Field} & \textit{Description} \\
   \hline \hline
   firmwareUpdateUrl 		& Location of the firmware update \\
-  executionDateTime	&  Date and time when the PS should execute update \\
+  executionDateTime	&  Date and time when the \acs{PS} should execute update \\
   \hline
 \end{tabularx}
-
+\end{table}
 
 \marginlabel{Response:} \textbf{200 OK}
 
