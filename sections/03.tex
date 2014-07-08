@@ -14,8 +14,9 @@
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   slotPosition (optional) 		& When present, the state of the slot with the given position will be changed. When absent, the state of whole \acs{PS} will be changed. \\
   state 					& See Section \ref{types:OperationState} \\
     \hline
@@ -42,8 +43,9 @@
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   slotPosition	& The position of the slot where the pedelec is located. \\
   pedelecManufacturerId		&  \\
   pedelecState 			& See Section \ref{types:OperationState} \\
@@ -73,9 +75,10 @@
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
-  \textit{Field} & \textit{Value} &\textit{Description} \\
-  \hline \hline
-
+  \rowcolor{table-head}
+  Field & Value & Description \\
+  \hline
+	.. & .. & .. \\
   \hline
 \end{tabularx}
 \end{table}
@@ -85,19 +88,15 @@
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
-\begin{tabularx}{\linewidth}{ | l | X | X | }
+\begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Value} & \textit{Description} \\
-  \hline \hline
-  failed			& JSON array & List of parameters that \acs{PS} failed to set a new value for.\\
-  reason 		& NotAcceptable or NotFound & \\
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  failed		& List of parameters that \acs{PS} failed to set a new value for.\\
+  reason 	& See Section \ref{types:ConfigErrorReason} \\
   \hline
 \end{tabularx}
-
-\textit{NotAcceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
-
-\textit{NotFound:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
-
 
 \textbf{5xx Server Error}
 
@@ -128,14 +127,14 @@ JSON object with return values for Pedelec-Configuration
 
 \marginlabel{Method:} POST
 
-\newpage
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
-  \textit{Field} & \textit{Value} &\textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Value & Description \\
+  \hline
   cmsURI 			& string 		& New value for the \acs{CMS} Webservice URI \\
   heartBeatInterval 			& integer 		& In seconds \\
   openSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
@@ -150,19 +149,15 @@ JSON object with return values for Pedelec-Configuration
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
-\begin{tabularx}{\linewidth}{ | l | X | X | }
+\begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Value} & \textit{Description} \\
-  \hline \hline
-  failed			& JSON array & List of parameters that \acs{PS} failed to set a new value for.\\
-  reason 		& NotAcceptable or NotFound & \\
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  failed		& List of parameters that \acs{PS} failed to set a new value for.\\
+  reason 	& See Section \ref{types:ConfigErrorReason} \\
   \hline
 \end{tabularx}
-
-\textit{NotAcceptable:} If the request for some keys could not be processed. It returns a JSON array of keys that are rejected (in this case other parameters are set)
-
-\textit{NotFound:} If some of the keys are not found/supported. It returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set)
-
 
 \textbf{5xx Server Error}
 
@@ -217,8 +212,9 @@ After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s)
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   slotPosition 		&  \\
   userId		&  \\
   \hline
@@ -299,8 +295,9 @@ The \acs{PS} should start as soon as possible the firmware after retrieving the 
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   firmwareUpdateUrl 		& Location of the firmware update \\
   executionDateTime	&  Date and time when the \acs{PS} should execute update \\
   \hline

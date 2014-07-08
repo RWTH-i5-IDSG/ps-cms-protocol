@@ -21,8 +21,9 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial \\
   firmwareVersion			& Firmware version of \acs{PS}\\
   slots/slotManufacturerId 	& This value identifies the slot by its hardware serial \\
@@ -37,8 +38,9 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   timestamp & Unix timestamp (seconds since epoch) \\
   heartbeatInterval & In seconds \\
     \hline
@@ -64,8 +66,9 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial\\
   stationErrorCode & \\
   stationInfo & \\
@@ -97,8 +100,9 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   pedelecManufacturerId 		& This value identifies the Pedelec by its hardware serial\\
   pedelecErrorCode & \\
   pedelecInfo & \\
@@ -131,8 +135,9 @@ The message contains the current timestamp, the meter value (Wh), the charging s
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	pedelecManufacturerId			& \\
   	slotManufacturerId					& \\
   	meterValue & \\
@@ -164,8 +169,9 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	cardId 		& Card specific number\\
   	pin			& User's secret PIN \\
     \hline
@@ -177,8 +183,9 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   userId						& User related to CardId \\
     \hline
 \end{tabularx}
@@ -204,8 +211,9 @@ As response the \acs{CMS} sends an acknowledgment.
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	userId 		& \\
   	pedelecManufacturerId			& \\
   	stationManufacturerId			& \\
@@ -235,8 +243,9 @@ As response the \acs{CMS} sends an acknowledgment.
 \vspace{-7mm}
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	pedelecManufacturerId			& \\
   	stationManufacturerId			& \\
   	slotManufacturerId			& \\
@@ -267,8 +276,9 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	timestamp			& Unix timestamp (seconds since epoch) \\	
   \hline
 \end{tabularx}
@@ -289,8 +299,9 @@ A \acs{PS} notifies \acs{CMS} about the success/failure of the firmware update.
 \marginlabel{Request:} 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   	status			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
   \hline
 \end{tabularx}

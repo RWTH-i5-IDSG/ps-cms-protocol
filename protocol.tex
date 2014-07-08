@@ -15,10 +15,19 @@
 \usepackage{acronym}
 \usepackage[colorlinks=false]{hyperref}
 \usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
 
 % New page after each section
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
+
+% This will reset the horizontal layout, giving you 
+% a textwidth of fraction*fullwidth.
+\settextfraction{0.75}
+
+% more at http://latexcolor.com/
+\definecolor{table-head}{rgb}{0.98, 0.92, 0.84}
 
 \usepackage[pdftex]{graphicx}
 \graphicspath{{./figures/}}

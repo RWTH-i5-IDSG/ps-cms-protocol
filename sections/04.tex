@@ -19,8 +19,9 @@ In case an error occurs, regardless of the HTTP code that is returned the implem
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Field} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
   timestamp & Unix timestamp (seconds since epoch)  \\
   code 		& Internal, application-specific error code \\
   message 	& Additional explanation \\
@@ -33,8 +34,9 @@ In case an error occurs, regardless of the HTTP code that is returned the implem
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Value} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Value & Description \\
+  \hline
   Operative 		& When the item is functional and working and ready to serve \\
   Inoperative 	& When the item is faulted and cannot be used \\
   \hline
@@ -45,11 +47,25 @@ In case an error occurs, regardless of the HTTP code that is returned the implem
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
-  \textit{Value} & \textit{Description} \\
-  \hline \hline
+  \rowcolor{table-head}
+  Value & Description \\
+  \hline
   DownloadFailed 		& \acs{PS} failed to load firmware \\
   InstallationFailed 	& Installation of firmware failed \\
   Installed				& Firmware is successfully installed in \acs{PS} \\
+  \hline
+\end{tabularx}
+
+\subsection{Configuration Error Reason}
+\label{types:ConfigErrorReason}
+
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Value & Description \\
+  \hline
+  NotAcceptable 		& If the request for some keys could not be processed. The server returns a JSON array of keys that are rejected (in this case other parameters are set) \\
+  NotFound 	& If some of the keys are not found/supported. The server returns a JSON array of keys that are not found as configuration parameters (in this case other parameters are set) \\
   \hline
 \end{tabularx}
 
