@@ -153,6 +153,52 @@ The message contains the current timestamp, the meter value (Wh), the charging s
 
 \marginlabel{Errors:} \textbf{5xx Server Error}
 
+\subsection{Firmware Status Notification}
+
+\marginlabel{Description:}
+A \acs{PS} notifies \acs{CMS} about the success/failure of the firmware update. 
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/status/firmware}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  	status			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
+\subsection{Logs Status Notification}
+
+\marginlabel{Description:}
+The \acs{PS} informs the \acs{CMS} about the status of requested uploading of logs.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/status/logs}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:} 
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  	status			& Upload status of the logs; see Section \ref{types:LogUpdateState} \\	
+  \hline
+\end{tabularx}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
 \subsection{Authorize}
 
 \marginlabel{Description:}
@@ -205,7 +251,6 @@ As response the \acs{CMS} sends an acknowledgment.
 
 \marginlabel{Method:} POST
 
-\newpage
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
@@ -283,29 +328,5 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
   \hline
 \end{tabularx}
 
-
-\marginlabel{Errors:} \textbf{5xx Server Error}
-
-
-\subsection{Firmware Status Notification}
-
-\marginlabel{Description:}
-A \acs{PS} notifies \acs{CMS} about the success/failure of the firmware update. 
-
-\marginlabel{URL:} \url{[BASE_CMS_URI]/status/firmware}
-
-\marginlabel{Method:} POST
-
-\marginlabel{Request:} 
-\begin{tabularx}{\linewidth}{ | l | X | }
-  \hline
-  \rowcolor{table-head}
-  Field & Description \\
-  \hline
-  	status			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
-  \hline
-\end{tabularx}
-
-\marginlabel{Response:} \textbf{200 OK}
 
 \marginlabel{Errors:} \textbf{5xx Server Error}

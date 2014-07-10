@@ -307,3 +307,37 @@ The \acs{PS} should start as soon as possible the firmware after retrieving the 
 \marginlabel{Response:} \textbf{200 OK}
 
 \marginlabel{Errors:} \textbf{5xx Server Error}
+
+\subsection{Upload Logs}
+
+\marginlabel{Description:}
+In order to diagnose errors, the \acs{CMS} can request the \acs{PS} to upload its locally stored log files to a remote directory. The fields oldestLogTimestamp and latestLogTimestamp define a date/time range for the requested logs. When both absent, \acs{PS} uploads all logs.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/upload-logs}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  logDirectoryUrl 		& Directory for the logs to be uploaded to \\
+  oldestLogTimestamp (optional)	& \\
+  latestLogTimestamp (optional)	& \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+A JSON array with the file names of the logs to be uploaded.
+
+\marginlabel{Errors:} \textbf{404 Not Found}
+
+When logs for the requested time window do not exist.
+
+\textbf{5xx Server Error}
