@@ -766,7 +766,7 @@ pedelec}</string>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
-					<string>0</string>
+					<string>FilledArrow</string>
 					<key>HeadScale</key>
 					<real>1.4285709857940674</real>
 					<key>Legacy</key>
@@ -774,7 +774,7 @@ pedelec}</string>
 					<key>Pattern</key>
 					<integer>1</integer>
 					<key>TailArrow</key>
-					<string>FilledArrow</string>
+					<string>0</string>
 					<key>TailScale</key>
 					<real>1.4299999475479126</real>
 				</dict>
@@ -858,15 +858,15 @@ pedelec}</string>
 				<key>stroke</key>
 				<dict>
 					<key>HeadArrow</key>
-					<string>FilledArrow</string>
+					<string>0</string>
 					<key>HeadScale</key>
 					<real>1.4285709857940674</real>
 					<key>Legacy</key>
 					<true/>
 					<key>TailArrow</key>
-					<string>0</string>
+					<string>FilledArrow</string>
 					<key>TailScale</key>
-					<real>0.5</real>
+					<real>1.4299999475479126</real>
 				</dict>
 			</dict>
 		</dict>
@@ -1186,7 +1186,7 @@ pedelec}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-07-03 08:17:31 +0000</string>
+	<string>2014-07-10 12:28:02 +0000</string>
 	<key>Modifier</key>
 	<string>Sevket Gökay</string>
 	<key>NotesVisible</key>
@@ -1267,7 +1267,7 @@ pedelec}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{731, 169}, {1447, 1229}}</string>
+		<string>{{493, 189}, {1447, 1229}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
