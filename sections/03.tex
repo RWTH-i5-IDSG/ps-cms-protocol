@@ -78,7 +78,8 @@
   \rowcolor{table-head}
   Field & Value & Description \\
   \hline
-	.. & .. & .. \\
+	maxCurrentValue & .. & .. \\
+	maxBatteryLevel & .. & .. \\
   \hline
 \end{tabularx}
 \end{table}
@@ -99,23 +100,6 @@
 \end{tabularx}
 
 \textbf{5xx Server Error}
-
-\subsection{Get Pedelec Configuration}
-
-\marginlabel{Description:}
-\acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
-
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
-
-\marginlabel{Method:} GET
-
-\marginlabel{Request:} -
-
-\marginlabel{Response:} \textbf{200 OK}
-
-JSON object with return values for Pedelec-Configuration
-
-\marginlabel{Errors:} \textbf{5xx Server Error}
 
 \subsection{Change Station Configuration}
 \label{cms:change-conf}
@@ -192,6 +176,23 @@ Even though a \acs{PS} informs the \acs{CMS} about the charging status of pedele
 \marginlabel{Response:} \textbf{200 OK}
 
 JSON object with return values for elements defined in Section \ref{ps:charging-status}/Request
+
+\marginlabel{Errors:} \textbf{5xx Server Error}
+
+\subsection{Get Pedelec Configuration}
+
+\marginlabel{Description:}
+\acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
+
+\marginlabel{Method:} GET
+
+\marginlabel{Request:} -
+
+\marginlabel{Response:} \textbf{200 OK}
+
+JSON object with return values for elements defined in Section \ref{cms:change-pedelec-conf}/Request
 
 \marginlabel{Errors:} \textbf{5xx Server Error}
 

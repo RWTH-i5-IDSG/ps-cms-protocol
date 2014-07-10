@@ -140,11 +140,14 @@ The message contains the current timestamp, the meter value (Wh), the charging s
   \hline
   	pedelecManufacturerId			& \\
   	slotManufacturerId					& \\
+  	timestamp			& Unix timestamp (seconds since epoch) \\
+  	chargingState			& Charging or Completed\\	
   	meterValue & \\
-  	batteryLevel & integer charge percentage \\
-  	chargingState			& \\
- 	timestamp			& Unix timestamp (seconds since epoch) \\
-  	
+  	battery/soc & percentage points \\
+  	battery/temperature &  \\
+  	battery/cycleCount &  \\
+  	battery/voltage &  \\
+  	battery/current &  \\
     \hline
 \end{tabularx}
 \end{table}
