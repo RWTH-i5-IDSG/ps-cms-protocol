@@ -1,11 +1,11 @@
 \section{Operations Initiated by Central Management System}
-
+\label{cms:main}
 \subsection{Change Station Operation State}
 
 \marginlabel{Description:}
 \acs{CMS} can request to change the operation state of a \acs{PS} or its slots. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/state/station}
+\marginlabel{URL:} \url{[BASE_PS_URI]/state}
 
 \marginlabel{Method:} POST
 
@@ -34,7 +34,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/state/pedelec}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelecs/state}
 
 \marginlabel{Method:} POST
 
@@ -65,7 +65,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change specific Pedelec configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelecs/<pedelecManufacturerId>/config}
 
 \marginlabel{Method:} POST
 
@@ -107,7 +107,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request a \acs{PS} to change configuration parameters. This request contains a list of key-value pairs, where "key" is the name of the configuration setting to change and "value" contains the new setting for the configuration setting.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/station/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/config}
 
 \marginlabel{Method:} POST
 
@@ -150,7 +150,7 @@
 \marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/station/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/config}
 
 \marginlabel{Method:} GET
 
@@ -184,7 +184,7 @@ JSON object with return values for elements defined in Section \ref{ps:charging-
 \marginlabel{Description:}
 \acs{CMS} can retrieve the values of configuration settings. This operation requires no parameters, and \acs{PS} returns all values.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelec/<pedelecManufacturerId>/config}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelecs/<pedelecManufacturerId>/config}
 
 \marginlabel{Method:} GET
 
