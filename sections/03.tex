@@ -34,7 +34,7 @@
 \marginlabel{Description:}
 \acs{CMS} can request to change the operation state of a pedelec located at a slot of a \acs{PS}. The \acs{PS} can accept or reject the process the request. When rejected, the \acs{PS} must include a reason.
 
-\marginlabel{URL:} \url{[BASE_PS_URI]/pedelecs/state}
+\marginlabel{URL:} \url{[BASE_PS_URI]/pedelecs/<pedelecManufacturerId>/state}
 
 \marginlabel{Method:} POST
 
@@ -47,7 +47,6 @@
   Field & Description \\
   \hline
   slotPosition	& The position of the slot where the pedelec is located. \\
-  pedelecManufacturerId		&  \\
   pedelecState 			& See Section \ref{types:OperationState} \\
   \hline
 \end{tabularx}
