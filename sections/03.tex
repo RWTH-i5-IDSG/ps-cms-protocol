@@ -341,3 +341,74 @@ A JSON array with the file names of the logs to be uploaded.
 When logs for the requested time window do not exist.
 
 \textbf{5xx Server Error}
+
+\subsection{Reserve Now}
+
+\marginlabel{Description:}
+A customer can reserve a pedelec for a specific time. For this purpose, the \acs{CMS} sends a reservation message with an expiry date to the \acs{PS}. The message does not include a specific pedelec, it reminds the \acs{PS} to keep free one bike for one reservation.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/reserve-now}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  reservationId & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
+  userId 	& Customer identification \\
+  expiryDate		& Timestamp which identifies the end of the reservation \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+A reservation was successfully added to the \acs{PS}
+
+\marginlabel{Errors:} 
+
+\textbf{403 Forbidden}
+
+When no pedelecs are available.
+
+\textbf{5xx Server Error}
+
+
+\subsection{Cancel Reservation}
+
+\marginlabel{Description:}
+A customer or the \acs{CMS} can cancel a reservation. For this purpose, the \acs{CMS} sends a cancel reservation message with the reservationId to the \acs{PS} which holds the reservation.
+
+\marginlabel{URL:} \url{[BASE_PS_URI]/cancel-reservation}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  reservationId & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
+  \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:} \textbf{200 OK}
+
+A reservation was successfully removed.
+
+\marginlabel{Errors:} 
+
+\textbf{404 Not Found}
+
+When the reservation was not found.
+
+\textbf{5xx Server Error}
