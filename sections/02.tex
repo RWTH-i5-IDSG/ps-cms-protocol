@@ -230,18 +230,97 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \marginlabel{Response:}
 \textbf{202 Accepted} (If credentials are accepted)
 
+\begin{table}[!h]
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
   \rowcolor{table-head}
   Field & Description \\
   \hline
-  userId						& User related to CardId \\
+  	cardId 		& Card specific number\\
+  	remainingTrials & Count of remaining authentication trials, before the account gets disabled.\\
     \hline
 \end{tabularx}
+\end{table}
 
 \marginlabel{Errors:} \textbf{406 Not Acceptable}
 
 \textbf{5xx Server Error}
+
+\subsection{Validate Activation-Key}
+
+\marginlabel{Description:}
+Before a user can use his card (e.g., Bluecard) to rent a bike, he has to activate it on the \acs{PS} terminal. For this purpose, he type in an Activation-Key which gets validated from the \acs{CMS}. After the key got accepted, "Activate Card" follows.
+
+The response shall indicate, whether or not the Activation-Key is accepted by the \acs{CMS}.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/validate-activation-key}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  	activationKey & Key to start activation process to initial user's card\\
+    \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:}
+\textbf{202 Accepted} (If credentials are accepted)
+
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  	cardId 		& Card specific number\\
+    \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
+
+\subsection{Set Card-Pin}
+
+\marginlabel{Description:}
+
+After a successful validation of the activation-key, the user can type in a pin for his card. At the end of the process, the \acs{PS} initializes the card with the userId. Is the copy procedure finished, the \acs{PS} sends cardId and cardPin to the \acs{CMS}.
+
+The response shall indicate, whether or not the card pin is successfully updated.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/set-card-pin}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Description \\
+  \hline
+  	cardId & Card Id to identifies user's card\\
+  	cardPin & Card Pin to set pin for user's card\\
+    \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:}
+\textbf{200 OK} (If credentials are accepted)
+
+\marginlabel{Errors:} \textbf{406 Not Acceptable}
+
+\textbf{5xx Server Error}
+
 
 \subsection{Start Transaction}
 
