@@ -237,12 +237,14 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
   Field & Description \\
   \hline
   	cardId 		& Card specific number\\
-  	remainingTrials & Count of remaining authentication trials, before the account gets disabled.\\
+%  	trialsRemaining & Count of remaining authentication trials, before the account gets disabled.\\
     \hline
 \end{tabularx}
 \end{table}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{403 Forbidden - no trials remaining and account gets disabled}
+
+\textbf{406 Not Acceptable}
 
 \textbf{5xx Server Error}
 
