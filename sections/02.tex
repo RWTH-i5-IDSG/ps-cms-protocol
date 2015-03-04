@@ -19,30 +19,31 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial \\
-  firmwareVersion			& Firmware version of \acs{PS}\\
-  slots/slotManufacturerId 	& This value identifies the slot by its hardware serial \\
-  slots/slotPosition			& The sequence position of the connected slot \\
-  slots/pedelecManufacturerId & This value identifies the locked pedelec by its hardware serial related to the slot \\
+  stationManufacturerId & String 		& This value identifies the \acs{PS} by its hardware serial \\
+  firmwareVersion			& String & Firmware version of \acs{PS}\\
+  slots/slotManufacturerId 	& String & This value identifies the slot by its hardware serial \\
+  slots/slotPosition			& Integer & The sequence position of the connected slot \\
+  slots/pedelecManufacturerId & String (optional) & This value identifies the locked pedelec by its hardware serial related to the slot \\
+  %callbackUrl				& String & URL to communicate with \acs{PS} initiated by \acs{CMS}\\
     \hline
 \end{tabularx}
 \end{table}
 
 \marginlabel{Response:}
-\textbf{202 Accepted}
+\textbf{200 OK}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  timestamp & Unix timestamp (seconds since epoch) \\
-  heartbeatInterval & In seconds \\
+  timestamp & Long & Unix timestamp (seconds since epoch) \\
+  heartbeatInterval & Integer & In seconds \\
     \hline
 \end{tabularx}
 
@@ -64,20 +65,20 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l  | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  stationManufacturerId 		& This value identifies the \acs{PS} by its hardware serial\\
-  stationErrorCode & \\
-  stationErrorInfo & \\
-  stationState & See Section \ref{types:OperationState} \\
-  timestamp & Unix timestamp (seconds since epoch) \\
-  slots/slotManufacturerId 	& This value identifies the slot by its hardware serial \\
-  slots/slotErrorCode & \\
-  slots/slotErrorInfo & \\
-  slots/slotState & See Section \ref{types:OperationState} \\
+  stationManufacturerId & String 		& This value identifies the \acs{PS} by its hardware serial\\
+  stationErrorCode & String & \\
+  stationErrorInfo & String & \\
+  stationState & String & See Section \ref{types:OperationState} \\
+  timestamp & Long & Unix timestamp (seconds since epoch) \\
+  slots/slotManufacturerId & String 	& This value identifies the slot by its hardware serial \\
+  slots/slotErrorCode & String & Optional when OPERATIONAL\\
+  slots/slotErrorInfo & String & Optional when OPERATIONAL\\
+  slots/slotState & String & See Section \ref{types:OperationState} \\
   \hline
 \end{tabularx}
 \end{table}
@@ -98,16 +99,16 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  pedelecManufacturerId 		& This value identifies the Pedelec by its hardware serial\\
-  pedelecErrorCode & \\
-  pedelecErrorInfo & \\
-  pedelecState & See Section \ref{types:OperationState} \\
-  timestamp & Unix timestamp (seconds since epoch) \\
+  pedelecManufacturerId & String 		& This value identifies the Pedelec by its hardware serial\\
+  pedelecErrorCode & String & Optional when OPERATIONAL \\
+  pedelecErrorInfo & String & Optional when OPERATIONAL\\
+  pedelecState & String & See Section \ref{types:OperationState} \\
+  timestamp & Long & Unix timestamp (seconds since epoch) \\
   \hline
 \end{tabularx}
 \end{table}
@@ -123,7 +124,7 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
 \marginlabel{Description:}
 The \acs{PS} informs the \acs{CMS} at regular intervals about the charging status (in time intervals or when fully charged) of all connected pedelecs of the \acs{PS}.
 
-The message contains the current timestamp, the meter value (Wh), the charging state (e.g., charging, completed), the PedelecID and StationSlotID.
+The message contains the current timestamp, the meter value (Wh), the charging state (e.g., charging, completed), the and PedelecID.
 
 \marginlabel{URL:} \url{[BASE_CMS_URI]/status/charging}
 
@@ -133,21 +134,20 @@ The message contains the current timestamp, the meter value (Wh), the charging s
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	pedelecManufacturerId			& \\
-  	slotManufacturerId					& \\
-  	timestamp			& Unix timestamp (seconds since epoch) \\
-  	chargingState		& See Section \ref{types:ChargingState} \\	
-  	meterValue & \\
-  	battery/soc & percentage points \\
-  	battery/temperature &  \\
-  	battery/cycleCount &  \\
-  	battery/voltage &  \\
-  	battery/current &  \\
+  	pedelecManufacturerId & String			& \\
+  	timestamp & Long			& Unix timestamp (seconds since epoch) \\
+  	chargingState & String		& See Section \ref{types:ChargingState} \\	
+  	meterValue & Double & \\
+  	battery/soc & Double & percentage points \\
+  	battery/temperature & Double &  \\
+  	battery/cycleCount & Integer &  \\
+  	battery/voltage & Double &  \\
+  	battery/current & Double &  \\
     \hline
 \end{tabularx}
 \end{table}
@@ -166,12 +166,12 @@ A \acs{PS} notifies \acs{CMS} about the success/failure of the firmware update.
 \marginlabel{Method:} POST
 
 \marginlabel{Request:} 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	status			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
+  	status & String			& Progress status of the firmware update; see Section \ref{types:FirmwareState} \\	
   \hline
 \end{tabularx}
 
@@ -189,12 +189,12 @@ The \acs{PS} informs the \acs{CMS} about the status of requested uploading of lo
 \marginlabel{Method:} POST
 
 \marginlabel{Request:} 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	status			& Upload status of the logs; see Section \ref{types:LogUpdateState} \\	
+  	status & String			& Upload status of the logs; see Section \ref{types:LogUpdateState} \\	
   \hline
 \end{tabularx}
 
@@ -216,13 +216,13 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l |  X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	cardId 		& Card specific number\\
-  	pin			& User's secret PIN \\
+  	cardId & String 		& Card specific number\\
+  	cardPin & String			& User's secret PIN \\
     \hline
 \end{tabularx}
 \end{table}
@@ -231,12 +231,12 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \textbf{202 Accepted} (If credentials are accepted)
 
 \begin{table}[!h]
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	cardId 		& Card specific number\\
+  	cardId & String 		& Card specific number\\
 %  	trialsRemaining & Count of remaining authentication trials, before the account gets disabled.\\
     \hline
 \end{tabularx}
@@ -262,13 +262,13 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	activationKey & Key to start activation process to initial user's card\\
-  	cardPIN & PIN for customer's card\\
+  	activationKey & String & Key to start activation process to initial user's card\\
+  	cardPin & String & PIN for customer's card\\
     \hline
 \end{tabularx}
 \end{table}
@@ -277,12 +277,12 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
 \textbf{202 Accepted} (If credentials are accepted)
 
 \begin{table}[!h]
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	cardId 		& Card specific number\\
+  	cardId 		& String & Card specific number\\
     \hline
 \end{tabularx}
 \end{table}
@@ -339,16 +339,16 @@ As response the \acs{CMS} sends an acknowledgment.
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	cardId 		& \\
-  	pedelecManufacturerId			& \\
-  	stationManufacturerId			& \\
-  	slotManufacturerId			& \\
-  	timestamp					& Unix timestamp (seconds since epoch) \\
+  	cardId & String 		& \\
+  	pedelecManufacturerId & String			& \\
+  	stationManufacturerId & String			& \\
+  	slotManufacturerId & String			& \\
+  	timestamp & Long					& Unix timestamp (seconds since epoch) \\
     \hline
 \end{tabularx}
 \end{table}
@@ -371,15 +371,15 @@ As response the \acs{CMS} sends an acknowledgment.
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	pedelecManufacturerId			& \\
-  	stationManufacturerId			& \\
-  	slotManufacturerId			& \\
-  	timestamp					& Unix timestamp (seconds since epoch) \\
+  	pedelecManufacturerId			& String & \\
+  	stationManufacturerId			& String & \\
+  	slotManufacturerId			& String & \\
+  	timestamp					& Long & Unix timestamp (seconds since epoch) \\
   	
     \hline
 \end{tabularx}
@@ -402,12 +402,12 @@ As response the \acs{CMS} sends an acknowledgment.
 
 \marginlabel{Response:} \textbf{200 OK}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	pedelecManufacturerIds			& List of manufacturer Ids for available pedelecs \\	
+  	pedelecManufacturerIds			& String[] & List of manufacturer Ids for available pedelecs \\	
   \hline
 \end{tabularx}
 
@@ -428,12 +428,12 @@ The \acs{CMS} sends a response with the current time of the \acs{CMS}, which cou
 
 \marginlabel{Response:} \textbf{200 OK}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  	timestamp			& Unix timestamp (seconds since epoch) \\	
+  	timestamp & Long			& Unix timestamp (seconds since epoch) \\	
   \hline
 \end{tabularx}
 

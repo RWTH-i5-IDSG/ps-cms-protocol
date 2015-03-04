@@ -12,12 +12,12 @@
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  slotPosition (optional) 		& When present, the state of the slot with the given position will be changed. When absent, the state of whole \acs{PS} will be changed. \\
+  slotPosition (optional) & Integer 		& When present, the state of the slot with the given position will be changed. When absent, the state of whole \acs{PS} will be changed. \\
   state 					& See Section \ref{types:OperationState} \\
     \hline
 \end{tabularx}
@@ -41,13 +41,13 @@
 \marginlabel{Request:} 
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  slotPosition	& The position of the slot where the pedelec is located. \\
-  pedelecState 			& See Section \ref{types:OperationState} \\
+  slotPosition	& Integer & The position of the slot where the pedelec is located. \\
+  pedelecState 			& String & See Section \ref{types:OperationState} \\
   \hline
 \end{tabularx}
 \end{table}
@@ -75,10 +75,10 @@
 \begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Value & Description \\
+  Field  & Type & Description \\
   \hline
-	maxCurrentValue & .. & .. \\
-	maxBatteryLevel & .. & .. \\
+	maxCurrentValue & Double & .. \\
+	maxBatteryLevel & Double & .. \\
   \hline
 \end{tabularx}
 \end{table}
@@ -88,13 +88,13 @@
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  failed		& List of parameters that \acs{PS} failed to set a new value for.\\
-  reason 	& See Section \ref{types:ConfigErrorReason} \\
+  failed		& ... & List of parameters that \acs{PS} failed to set a new value for.\\
+  reason 	& String & See Section \ref{types:ConfigErrorReason} \\
   \hline
 \end{tabularx}
 
@@ -116,13 +116,13 @@
 \begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Value & Description \\
+  Field & Type & Description \\
   \hline
-  cmsURI 			& string 		& New value for the \acs{CMS} Webservice URI \\
-  heartBeatInterval 			& integer 		& In seconds \\
-  openSlotTimeout 			& integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
-  rebootRetries 				& integer 		& How many times should \acs{PS} try to reboot before giving up.\\
-  chargingStatusInformInterval 	& integer 		& In seconds \\
+  cmsURI 			& String 		& New value for the \acs{CMS} Webservice URI \\
+  heartBeatInterval 			& Integer 		& In seconds \\
+  openSlotTimeout 			& Integer 		& In seconds. How long should \acs{PS} wait after unlocking a slot before locking it again. \\
+  rebootRetries 				& Integer 		& How many times should \acs{PS} try to reboot before giving up.\\
+  chargingStatusInformInterval 	& Integer 		& In seconds \\
   \hline
 \end{tabularx}
 \end{table}
@@ -132,13 +132,13 @@
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  failed		& List of parameters that \acs{PS} failed to set a new value for.\\
-  reason 	& See Section \ref{types:ConfigErrorReason} \\
+  failed	 & ..	& List of parameters that \acs{PS} failed to set a new value for.\\
+  reason & String	& See Section \ref{types:ConfigErrorReason} \\
   \hline
 \end{tabularx}
 
@@ -210,13 +210,13 @@ After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s)
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  slotPosition 		&  \\
-  cardId		&  \\
+  slotPosition 	& Integer	&  \\
+  cardId		& String &  \\
   \hline
 \end{tabularx}
 \end{table}
@@ -293,13 +293,13 @@ The \acs{PS} should start as soon as possible the firmware after retrieving the 
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  firmwareUpdateUrl 		& Location of the firmware update \\
-  executionDateTime	&  Date and time when the \acs{PS} should execute update \\
+  firmwareUpdateUrl & String 		& Location of the firmware update \\
+  executionDateTime	&  Long & Date and time when the \acs{PS} should execute update, UNIX timestamp \\
   \hline
 \end{tabularx}
 \end{table}
@@ -320,14 +320,14 @@ In order to diagnose errors, the \acs{CMS} can request the \acs{PS} to upload it
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  logDirectoryUrl 		& Directory for the logs to be uploaded to \\
-  oldestLogTimestamp (optional)	& \\
-  latestLogTimestamp (optional)	& \\
+  logDirectoryUrl & String 		& Directory for the logs to be uploaded to \\
+  oldestLogTimestamp (optional) & Long	& UNIX timestamp \\
+  latestLogTimestamp (optional)	& Long & UNIX timestamp \\
   \hline
 \end{tabularx}
 \end{table}
@@ -354,14 +354,14 @@ A customer can reserve a pedelec for a specific time. For this purpose, the \acs
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  reservationId & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
-  userId 	& Customer identification \\
-  expiryDate		& Timestamp which identifies the end of the reservation \\
+  reservationId & .. & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
+  cardId 	& .. & Customer identification \\
+  expiryDate		& Long & UNIX timestamp which identifies the end of the reservation \\
   \hline
 \end{tabularx}
 \end{table}
@@ -391,12 +391,12 @@ A customer or the \acs{CMS} can cancel a reservation. For this purpose, the \acs
 \marginlabel{Request:}
 \begin{table}[!h]
 \vspace{-7mm}
-\begin{tabularx}{\linewidth}{ | l | X | }
+\begin{tabularx}{\linewidth}{ | l | l | X | }
   \hline
   \rowcolor{table-head}
-  Field & Description \\
+  Field & Type & Description \\
   \hline
-  reservationId & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
+  reservationId & .. & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
   \hline
 \end{tabularx}
 \end{table}
