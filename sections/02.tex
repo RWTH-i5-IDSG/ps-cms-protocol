@@ -73,13 +73,13 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about i
   Field & Type & Description \\
   \hline
   stationManufacturerId & String 		& This value identifies the \acs{PS} by its hardware serial\\
-  stationErrorCode & String & \\
-  stationErrorInfo & String & \\
+  stationErrorCode & String & Required when stationState is INOPERATIVE \\
+  stationErrorInfo & String & Required when stationState is INOPERATIVE \\
   stationState & String & See Section \ref{types:OperationState} \\
   timestamp & Long & Unix timestamp (seconds since epoch) \\
   slots/slotManufacturerId & String 	& This value identifies the slot by its hardware serial \\
-  slots/slotErrorCode & String & Optional when OPERATIONAL\\
-  slots/slotErrorInfo & String & Optional when OPERATIONAL\\
+  slots/slotErrorCode & String & Required when slotState is INOPERATIVE \\
+  slots/slotErrorInfo & String & Required when slotState is INOPERATIVE \\
   slots/slotState & String & See Section \ref{types:OperationState} \\
   \hline
 \end{tabularx}
@@ -107,8 +107,8 @@ A \acs{PS} sends a notification to the \acs{CMS} to inform the \acs{CMS} about t
   Field & Type & Description \\
   \hline
   pedelecManufacturerId & String 		& This value identifies the Pedelec by its hardware serial\\
-  pedelecErrorCode & String & Optional when OPERATIONAL \\
-  pedelecErrorInfo & String & Optional when OPERATIONAL\\
+  pedelecErrorCode & String & Required when pedelecState is INOPERATIVE \\
+  pedelecErrorInfo & String & Required when pedelecState is INOPERATIVE \\
   pedelecState & String & See Section \ref{types:OperationState} \\
   timestamp & Long & Unix timestamp (seconds since epoch) \\
   \hline
