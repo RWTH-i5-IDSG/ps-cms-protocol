@@ -29,7 +29,7 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
   slots/slotManufacturerId 	& String & This value identifies the slot by its hardware serial \\
   slots/slotPosition			& Integer & The sequence position of the connected slot \\
   slots/pedelecManufacturerId & String (optional) & This value identifies the locked pedelec by its hardware serial related to the slot \\
-  %callbackUrl				& String & URL to communicate with \acs{PS} initiated by \acs{CMS}\\
+  stationURL				& String & URL to communicate with \acs{PS} initiated by \acs{CMS}\\
     \hline
 \end{tabularx}
 \end{table}
@@ -238,12 +238,19 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
   Field & Type & Description \\
   \hline
   	cardId & String 		& Card specific number\\
+  	accountState & Account State & See Section \ref{types:AccountState} \\
 %  	trialsRemaining & Count of remaining authentication trials, before the account gets disabled.\\
     \hline
 \end{tabularx}
 \end{table}
+\marginlabel{Errors:}
+\textbf{403 Forbidden - no trials remaining and account gets disabled}
 
-\marginlabel{Errors:} \textbf{403 Forbidden - no trials remaining and account gets disabled}
+\textbf{403 Forbidden - card account is unknown}
+
+\textbf{403 Forbidden - card account is disabled}
+
+\textbf{403 Forbidden - wrong pin}
 
 \textbf{406 Not Acceptable}
 
