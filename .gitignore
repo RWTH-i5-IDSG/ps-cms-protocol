@@ -7,7 +7,6 @@
 *.fdb_latexmk
 *.dvi
 *.out
-/*.pdf
 *.ps
 *.acn
 *.ist
