@@ -1,18 +1,18 @@
 ## Status of the Central Management System Implementation
 
 ### Operations Initiated by Pedelec Station
-- [ ] Boot Notification
-- [ ] Station Status Notification
-- [ ] Pedelec Status Notification
-- [ ] Charging Status Notification
+- [x] Boot Notification
+- [x] Station Status Notification
+- [x] Pedelec Status Notification
+- [x] Charging Status Notification
 - [ ] Firmware Status Notification
 - [ ] Logs Status Notification
-- [ ] Authorize
-- [ ] Activate Card
-- [ ] Start Transaction
-- [ ] Stop Transaction
-- [ ] Get Available Pedelecs
-- [ ] Heartbeat
+- [x] Authorize
+- [x] Activate Card
+- [x] Start Transaction
+- [x] Stop Transaction
+- [x] Get Available Pedelecs
+- [x] Heartbeat
 
 
 ### Operations Initiated by Central Management System
