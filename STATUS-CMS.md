@@ -16,17 +16,17 @@
 
 
 ### Operations Initiated by Central Management System
-- [ ] Change Station Operation State
-- [ ] Change Pedelec Operation State
-- [ ] Change Pedelec Configuration
-- [ ] Change Station Configuration
-- [ ] Get Station Configuration
+- [x] Change Station Operation State
+- [x] Change Pedelec Operation State
+- [x] Change Pedelec Configuration
+- [x] Change Station Configuration
+- [x] Get Station Configuration
 - [ ] Get Charging Status
-- [ ] Get Pedelec Configuration
-- [ ] Remote Authorize
+- [x] Get Pedelec Configuration
+- [x] Remote Authorize
 - [ ] Cancel Authorize
-- [ ] Reboot
-- [ ] Unlock Slot
+- [x] Reboot
+- [x] Unlock Slot
 - [ ] Update Firmware
 - [ ] Upload Logs
 - [ ] Reserve Now
