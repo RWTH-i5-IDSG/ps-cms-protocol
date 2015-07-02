@@ -399,13 +399,25 @@ As response the \acs{CMS} sends an acknowledgment.
 \subsection{Get Available Pedelecs}
 
 \marginlabel{Description:}
-\acs{PS} can retrieve a list of available pedelecs ordered by a predefined priority.
+\acs{PS} can retrieve a list of available pedelecs ordered by a predefined priority\\ or a specific pedelec for a user's reservation when available for this moment.
 
-\marginlabel{URL:} \url{[BASE_CMS_URI]/available-pedelecs}
+\marginlabel{URL:} \url{[BASE_CMS_URI]/available-pedelecs?cardId=ab34-cd56}
 
 \marginlabel{Method:} GET
 
-\marginlabel{Request:} -
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Type & Description \\
+  \hline
+  	cardId & String & User's card ID\\
+    \hline
+\end{tabularx}
+\end{table}
+
 
 \marginlabel{Response:} \textbf{200 OK}
 
