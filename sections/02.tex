@@ -44,9 +44,10 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
   \hline
   timestamp & Long & Unix timestamp (seconds since epoch) \\
   heartbeatInterval & Integer & In seconds \\
-  cardReadEncrKey & String & Encryption key to read out user's cardId \\
-  cardWriteEncrKey & String & Encryption key to write user's cardId \\
-    \hline
+  cardKeys/name 		& String & Name of the key pair for identification \\
+  cardKeys/readKey 	& String & Encryption key to read out user's cardId \\
+  cardKeys/writeKey 	& String & Encryption key to write user's cardId \\
+  \hline
 \end{tabularx}
 
 \marginlabel{Errors:} 
