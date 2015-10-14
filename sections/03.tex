@@ -23,9 +23,9 @@
 \end{tabularx}
 \end{table}
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -52,9 +52,9 @@
 \end{tabularx}
 \end{table}
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -84,7 +84,7 @@
 \end{table}
 
 \marginlabel{Response:} 
-\textbf{202 Accepted} (If all the parameter changes are accepted and done)
+\textbf{200 OK} (If all the parameter changes are accepted and done)
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
@@ -128,7 +128,7 @@
 \end{table}
 
 \marginlabel{Response:} 
-\textbf{202 Accepted} (If all the parameter changes are accepted and done)
+\textbf{200 OK} (If all the parameter changes are accepted and done)
 
 \marginlabel{Errors:} \textbf{400 Bad Request}
 
@@ -221,9 +221,9 @@ After a timeout period \acs{PS} checks the existence of a pedelec at the slot(s)
 \end{tabularx}
 \end{table}
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -238,9 +238,9 @@ When using the mobile app for renting a pedelec the user can wish to cancel the 
 
 \marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -255,9 +255,9 @@ When using the mobile app for renting a pedelec the user can wish to cancel the 
 
 \marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -273,9 +273,9 @@ slotPosition is optional. When absent, the \acs{PS} unlocks all slots.
 
 \marginlabel{Request:} -
 
-\marginlabel{Response:} \textbf{202 Accepted}
+\marginlabel{Response:} \textbf{200 OK}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED}
 
 \textbf{5xx Server Error}
 
@@ -337,16 +337,14 @@ In order to diagnose errors, the \acs{CMS} can request the \acs{PS} to upload it
 
 A JSON array with the file names of the logs to be uploaded.
 
-\marginlabel{Errors:} \textbf{404 Not Found}
-
-When logs for the requested time window do not exist.
+\marginlabel{Errors:} \textbf{CONSTRAINT\_FAILED - Logs for the requested time window do not exist}
 
 \textbf{5xx Server Error}
 
 \subsection{Reserve Now}
 
 \marginlabel{Description:}
-A customer can reserve a pedelec for a specific time. For this purpose, the \acs{CMS} sends a reservation message with an expiry date to the \acs{PS}. The message does not include a specific pedelec, it reminds the \acs{PS} to keep free one bike for one reservation.
+A customer can reserve a specefic pedelec for a certain time. For this purpose, the \acs{CMS} sends a reservation message with a pedelecId and an expiry date to the \acs{PS}. 
 
 \marginlabel{URL:} \url{[BASE_PS_URI]/reserve-now}
 
@@ -360,9 +358,9 @@ A customer can reserve a pedelec for a specific time. For this purpose, the \acs
   \rowcolor{table-head}
   Field & Type & Description \\
   \hline
-  reservationId & .. & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
-  cardId 	& .. & Customer identification \\
-  expiryDate		& Long & UNIX timestamp which identifies the end of the reservation \\
+  pedelecId  & String & Id to identify reserved pedelec on \acs{CMS} and \acs{PS} side\\
+  cardId 	 & String & Customer identification \\
+  expiryDate & Long & UNIX timestamp which identifies the end of the reservation \\
   \hline
 \end{tabularx}
 \end{table}
@@ -373,9 +371,9 @@ A reservation was successfully added to the \acs{PS}
 
 \marginlabel{Errors:} 
 
-\textbf{403 Forbidden}
+\textbf{PEDELEC\_MISSING}
 
-When no pedelecs are available.
+When pedelec is not available.
 
 \textbf{5xx Server Error}
 
@@ -383,7 +381,7 @@ When no pedelecs are available.
 \subsection{Cancel Reservation}
 
 \marginlabel{Description:}
-A customer or the \acs{CMS} can cancel a reservation. For this purpose, the \acs{CMS} sends a cancel reservation message with the reservationId to the \acs{PS} which holds the reservation.
+A customer or the \acs{CMS} can cancel a reservation. For this purpose, the \acs{CMS} sends a cancel reservation message with the pedelecId to the \acs{PS} which holds the reserved pedelec.
 
 \marginlabel{URL:} \url{[BASE_PS_URI]/cancel-reservation}
 
@@ -397,7 +395,7 @@ A customer or the \acs{CMS} can cancel a reservation. For this purpose, the \acs
   \rowcolor{table-head}
   Field & Type & Description \\
   \hline
-  reservationId & .. & Id to identify reservation on \acs{CMS} and \acs{PS} side\\
+  pedelecId & String & Id to identify reserved pedelec on \acs{CMS} and \acs{PS} side\\
   \hline
 \end{tabularx}
 \end{table}
@@ -408,7 +406,8 @@ A reservation was successfully removed.
 
 \marginlabel{Errors:} 
 
-\textbf{404 Not Found}
+\textbf{CONSTRAINT\_FAILED - pedelec not found}
+\textbf{CONSTRAINT\_FAILED - reservation not found}
 
 When the reservation was not found.
 

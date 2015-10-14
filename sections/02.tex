@@ -51,7 +51,7 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
 \end{tabularx}
 
 \marginlabel{Errors:} 
-\textbf{406 Not Acceptable} (If the station is not registered)
+\textbf{NOT\_REGISTERED - The station  (\{id\}) is not registered}
 
 \textbf{5xx Server Error}
 
@@ -208,7 +208,7 @@ The \acs{PS} informs the \acs{CMS} about the status of requested uploading of lo
 \marginlabel{Description:}
 Before a user can choose and unlock a pedelec with his CustomerCard (e.g., Bluecard), the \acs{PS} needs to be able to authorize the operation. Only after authorization the \acs{PS} will be able to unlock the pedelec. For this purpose the \acs{PS} needs user's Card-ID and PIN for authorization.
 
-The response shall indicate, whether or not the Card-ID and PIN combination is accepted by the \acs{CMS}.
+The response shall indicate, whether or not the Card-ID and PIN combination is accepted by the \acs{CMS} and how many pedelecs are currently rented and can be rented by the customer.
 
 \marginlabel{URL:} \url{[BASE_CMS_URI]/authorize}
 
@@ -229,7 +229,7 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \end{table}
 
 \marginlabel{Response:}
-\textbf{202 Accepted} (If credentials are accepted)
+\textbf{200 OK} (If credentials are accepted)
 
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{ | l | l | X | }
@@ -238,21 +238,19 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
   Field & Type & Description \\
   \hline
   	cardId & String 		& Card specific number\\
-  	accountState & Account State & See Section \ref{types:AccountState} \\
-%  	trialsRemaining & Count of remaining authentication trials, before the account gets disabled.\\
+  	actualRentedCount & Integer & Number of pedelecs rented by customer \\
+  	canRentCount & Integer & Count of pedelecs which can be rented\\
     \hline
 \end{tabularx}
 \end{table}
 \marginlabel{Errors:}
-\textbf{403 Forbidden - no trials remaining and account gets disabled}
+\textbf{AUTH\_ATTEMPTS\_EXCEEDED - no trials remaining and account gets disabled}
 
-\textbf{403 Forbidden - card account is unknown}
+\textbf{CONSTRAINT\_FAILED - card account is unknown}
 
-\textbf{403 Forbidden - card account is disabled}
+\textbf{CONSTRAINT\_FAILED - card account is disabled}
 
-\textbf{403 Forbidden - wrong pin}
-
-\textbf{406 Not Acceptable}
+\textbf{CONSTRAINT\_FAILED - wrong pin}
 
 \textbf{5xx Server Error}
 
@@ -282,7 +280,7 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
 \end{table}
 
 \marginlabel{Response:}
-\textbf{202 Accepted} (If credentials are accepted)
+\textbf{200 OK} (If credentials are accepted)
 
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{ | l | l | X | }
@@ -295,7 +293,8 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
 \end{tabularx}
 \end{table}
 
-\marginlabel{Errors:} \textbf{406 Not Acceptable}
+\marginlabel{Errors:} 
+\textbf{CONSTRAINT\_FAILED - Credentials are not accepted}
 
 \textbf{5xx Server Error}
 

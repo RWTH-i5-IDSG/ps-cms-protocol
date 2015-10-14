@@ -15,7 +15,7 @@
 \subsection{Error Message Template}
 \label{types:error-msg-template}
 
-In case an error occurs, regardless of the HTTP code that is returned the implementation \textit{always} responses with a JSON object containing following fields: 
+In case an error occurs, send an HTTP 400 (Bad Request) which \textit{always} responses with a JSON object containing following fields: 
 
 \begin{tabularx}{\linewidth}{ | l | X | }
   \hline
@@ -28,6 +28,18 @@ In case an error occurs, regardless of the HTTP code that is returned the implem
   \hline
 \end{tabularx}
 
+
+\marginlabel{Error Codes:}
+\begin{itemize}
+    \item AUTH\_ATTEMPTS\_EXCEEDED
+    \item CONSTRAINT\_FAILED
+    \item DATABASE\_OPERATION\_FAILED
+    \item HARDWARE\_MALFUNCTION
+    \item NOT\_REGISTERED
+    \item PEDELEC\_MISSING
+    \item PEDELEC\_FOUND
+    \item UNKNOWN\_SERVER\_ERROR
+\end{itemize}
 
 \subsection{Operation State}
 \label{types:OperationState}
@@ -83,18 +95,18 @@ In case an error occurs, regardless of the HTTP code that is returned the implem
   \hline
 \end{tabularx}
 
-\subsection{Account State}
-\label{types:AccountState}
+% \subsection{Account State}
+% \label{types:AccountState}
 
-\begin{tabularx}{\linewidth}{ | l | X | }
-  \hline
-  \rowcolor{table-head}
-  Value & Description \\
-  \hline
-  HAS\_PEDELEC 		& When customer occupies at least one pedelec \\
-  HAS\_NO\_PEDELEC 	& When customer has no pedelec  \\
-  \hline
-\end{tabularx}
+% \begin{tabularx}{\linewidth}{ | l | X | }
+%   \hline
+%   \rowcolor{table-head}
+%   Value & Description \\
+%   \hline
+%   HAS\_PEDELEC 		& When customer occupies at least one pedelec \\
+%   HAS\_NO\_PEDELEC 	& When customer has no pedelec  \\
+%   \hline
+% \end{tabularx}
 
 \subsection{Configuration Error Reason}
 \label{types:ConfigErrorReason}
