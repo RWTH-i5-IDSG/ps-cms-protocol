@@ -46,7 +46,6 @@ The \acs{PS} repeats the Boot Notification (in an appropriated interval) until t
   heartbeatInterval & Integer & In seconds \\
   cardKeys/name 		& String & Name of the key pair for identification \\
   cardKeys/readKey 	& String & Encryption key to read out user's cardId \\
-  cardKeys/writeKey 	& String & Encryption key to write user's cardId \\
   \hline
 \end{tabularx}
 
@@ -255,6 +254,7 @@ The response shall indicate, whether or not the Card-ID and PIN combination is a
 \textbf{5xx Server Error}
 
 \subsection{Activate Card}
+\label{ps:activate-card}
 
 \marginlabel{Description:}
 Before a user can use his card (e.g., Bluecard) to rent a bike, he has to activate it on the \acs{PS} terminal. For this purpose, the \acs{PS} sends Activation-Key and PIN to the \acs{CMS}.
@@ -289,6 +289,9 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
   Field & Type & Description \\
   \hline
   	cardId 		& String & Card specific number\\
+  	applicationKey & String & Encryption key to write read and write keys\\
+    readKey 	& String & Encryption key to read user's cardId\\
+    writeKey 	& String & Encryption key to write user's cardId\\
     \hline
 \end{tabularx}
 \end{table}
@@ -296,6 +299,36 @@ The response shall indicate, whether or not the Activation-Key and PIN are accep
 \marginlabel{Errors:} 
 \textbf{CONSTRAINT\_FAILED - Credentials are not accepted}
 
+\textbf{5xx Server Error}
+
+\subsection{Card Activation Notification}
+\label{ps:card-activation-notification}
+
+\marginlabel{Description:}
+The \acs{PS} informs the \acs{CMS} about a (un-)successful card activation related to \autoref{ps:activate-card}.
+
+\marginlabel{URL:} \url{[BASE_CMS_URI]/activate-card}
+
+\marginlabel{Method:} POST
+
+\marginlabel{Request:}
+\begin{table}[!h]
+\vspace{-7mm}
+\begin{tabularx}{\linewidth}{ | l | l | X | }
+  \hline
+  \rowcolor{table-head}
+  Field & Type & Description \\
+  \hline
+  	successfulActivation & Boolean & Indicated the state of the activation process\\
+  	cardId & String & Card specific number\\
+    \hline
+\end{tabularx}
+\end{table}
+
+\marginlabel{Response:}
+\textbf{200 OK} (If credentials are accepted)
+
+\marginlabel{Errors:} 
 \textbf{5xx Server Error}
 
 %\subsection{Set Card-Pin}
